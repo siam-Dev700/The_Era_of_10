@@ -1,0 +1,2328 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>THE ERA OF 10 — Lionel Messi</title>
+<meta name="description" content="A digital memory of Lionel Messi's era. 2004 — 2026. A story of a generation.">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        gold: { 50:'#fbf7eb', 100:'#f5ecd0', 200:'#ead99a', 300:'#dfc464', 400:'#d4af37', 500:'#c9a227', 600:'#a37f1c', 700:'#7a5f16', 800:'#524010', 900:'#2a2108' },
+        night: { 900:'#0a0a0f', 800:'#111118', 700:'#1a1a24', 600:'#242430' },
+        parchment: '#f5f0e6',
+      },
+      fontFamily: {
+        serif: ['Cormorant Garamond', 'Georgia', 'serif'],
+        sans: ['Inter', 'system-ui', 'sans-serif'],
+      },
+      animation: {
+        'fade-up': 'fadeUp 0.9s ease-out forwards',
+        'fade-in': 'fadeIn 1.2s ease-out forwards',
+        'soft-pulse': 'softPulse 4s ease-in-out infinite',
+        'float': 'float 6s ease-in-out infinite',
+      },
+      keyframes: {
+        fadeUp: { '0%': { opacity: '0', transform: 'translateY(28px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } },
+        fadeIn: { '0%': { opacity: '0' }, '100%': { opacity: '1' } },
+        softPulse: { '0%,100%': { opacity: '0.4' }, '50%': { opacity: '0.7' } },
+        float: { '0%,100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-8px)' } },
+      }
+    }
+  }
+}
+</script>
+<style>
+  html { scroll-behavior: smooth; }
+  body { background: #0a0a0f; color: #f5f0e6; overflow-x: hidden; }
+
+  /* Cover entrance */
+  .cover-screen {
+    position: fixed; inset: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: center;
+    background: #0a0a0f;
+    transition: opacity 1.1s cubic-bezier(0.4,0,0.2,1), visibility 1.1s;
+  }
+  .cover-screen.hidden {
+    opacity: 0; visibility: hidden; pointer-events: none;
+  }
+  .cover-img-wrap {
+    position: relative; width: 100%; height: 100%;
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+  }
+  .cover-img-wrap img {
+    width: 100%; height: 100%; object-fit: cover;
+    animation: coverZoom 12s ease-out forwards;
+  }
+  @keyframes coverZoom {
+    0% { transform: scale(1.08); }
+    100% { transform: scale(1); }
+  }
+  .cover-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(10,10,15,0.85) 0%, rgba(10,10,15,0.2) 40%, rgba(10,10,15,0.4) 100%);
+  }
+  .cover-content {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 2.5rem 1.5rem 3.5rem;
+    text-align: center;
+    animation: fadeUp 1.4s 0.6s ease-out both;
+  }
+  .enter-btn {
+    margin-top: 1.75rem;
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    padding: 0.85rem 2rem;
+    border: 1px solid rgba(212,175,55,0.55);
+    background: rgba(212,175,55,0.08);
+    color: #ead99a;
+    font-family: Inter, sans-serif;
+    font-size: 0.7rem; letter-spacing: 0.28em; text-transform: uppercase;
+    border-radius: 9999px;
+    backdrop-filter: blur(8px);
+    transition: all 0.35s ease;
+    cursor: pointer;
+  }
+  .enter-btn:hover, .enter-btn:active {
+    background: rgba(212,175,55,0.22);
+    border-color: #d4af37;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(212,175,55,0.18);
+  }
+
+  /* Fixed atmospheric background */
+  .bg-fixed {
+    position: fixed; inset: 0; z-index: 0;
+    pointer-events: none;
+  }
+  .bg-fixed img {
+    width: 100%; height: 100%; object-fit: cover;
+    opacity: 0.30; filter: brightness(0.60) contrast(1.1) saturate(0.85);
+  }
+  .bg-vignette {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse at 50% 20%, transparent 0%, rgba(10,10,15,0.55) 70%),
+      linear-gradient(to bottom, rgba(10,10,15,0.3) 0%, rgba(10,10,15,0.75) 100%);
+  }
+
+  /* Main content */
+  .book-content {
+    position: relative; z-index: 10;
+    max-width: 42rem; margin: 0 auto;
+    padding: 0 1.25rem 8rem;
+  }
+
+  /* Chapter reveal on scroll */
+  .chapter-block {
+    opacity: 0; transform: translateY(36px);
+    transition: opacity 0.85s cubic-bezier(0.22,1,0.36,1), transform 0.85s cubic-bezier(0.22,1,0.36,1);
+  }
+  .chapter-block.visible {
+    opacity: 1; transform: translateY(0);
+  }
+
+  /* Typography */
+  .chapter-num {
+    font-family: Inter, sans-serif;
+    font-size: 0.65rem; letter-spacing: 0.32em; text-transform: uppercase;
+    color: #d4af37; font-weight: 500;
+  }
+  .chapter-title {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-weight: 600; line-height: 1.15;
+    color: #f5f0e6;
+  }
+  .chapter-loc {
+    font-family: Inter, sans-serif;
+    font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: rgba(212,175,55,0.7); font-weight: 400;
+  }
+  .story-p {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 1.2rem; line-height: 1.75;
+    color: rgba(245,240,230,0.88);
+    font-weight: 400;
+  }
+  .story-p em, .story-p i { font-style: italic; color: #ead99a; }
+  .ending-text {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 1.15rem; line-height: 1.65;
+    color: #ead99a; font-style: italic;
+  }
+
+  /* Divider */
+  .gold-line {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(212,175,55,0.45), transparent);
+  }
+
+  /* TOC */
+  .toc-item {
+    display: flex; align-items: baseline; gap: 0.75rem;
+    padding: 0.7rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+  .toc-item:hover { border-bottom-color: rgba(212,175,55,0.35); }
+  .toc-item:hover .toc-title { color: #ead99a; }
+  .toc-num {
+    font-family: Inter, sans-serif;
+    font-size: 0.65rem; letter-spacing: 0.12em;
+    color: rgba(212,175,55,0.6); min-width: 1.6rem;
+  }
+  .toc-title {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 1.05rem; color: rgba(245,240,230,0.8);
+    transition: color 0.3s;
+  }
+
+  /* Progress bar */
+  .progress-bar {
+    position: fixed; top: 0; left: 0; height: 2px; z-index: 90;
+    background: linear-gradient(90deg, #a37f1c, #d4af37, #ead99a);
+    width: 0%; transition: width 0.1s linear;
+  }
+
+  /* Floating nav */
+  .nav-pill {
+    position: fixed; bottom: 1.5rem; left: 50%; transform: translateX(-50%);
+    z-index: 80;
+    display: flex; gap: 0.5rem;
+    padding: 0.45rem 0.6rem;
+    background: rgba(17,17,24,0.85);
+    border: 1px solid rgba(212,175,55,0.25);
+    border-radius: 9999px;
+    backdrop-filter: blur(16px);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.45);
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.4s ease;
+  }
+  .nav-pill.show { opacity: 1; pointer-events: auto; }
+  .nav-btn {
+    width: 2.4rem; height: 2.4rem; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: rgba(234,217,154,0.7); font-size: 0.85rem;
+    transition: all 0.25s; border: none; background: transparent; cursor: pointer;
+  }
+  .nav-btn:hover { color: #d4af37; background: rgba(212,175,55,0.12); }
+
+  /* Scroll indicator on cover */
+  .scroll-hint {
+    position: absolute; bottom: 1.25rem; left: 50%; transform: translateX(-50%);
+    animation: float 2.8s ease-in-out infinite;
+    opacity: 0.6;
+  }
+
+  /* Soft glow accents */
+  .glow-dot {
+    width: 4px; height: 4px; border-radius: 50%;
+    background: #d4af37; box-shadow: 0 0 12px 3px rgba(212,175,55,0.45);
+  }
+
+  @media (min-width: 640px) {
+    .story-p { font-size: 1.32rem; line-height: 1.8; }
+    .chapter-title { font-size: 2.35rem; }
+    .book-content { padding-left: 2rem; padding-right: 2rem; }
+  }
+  @media (min-width: 768px) {
+    .story-p { font-size: 1.4rem; }
+    .chapter-title { font-size: 2.6rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Progress -->
+<div class="progress-bar" id="progress"></div>
+
+<!-- ==================== COVER ==================== -->
+<div class="cover-screen" id="cover">
+  <div class="cover-img-wrap">
+    <img src="Cover.jpg" alt="Lionel Messi — The Era" draggable="false">
+    <div class="cover-overlay"></div>
+    <div class="cover-content">
+      <p class="font-sans text-[0.65rem] tracking-[0.4em] text-gold-300/80 uppercase mb-3">Lionel Messi</p>
+      <h1 class="font-serif text-4xl sm:text-5xl md:text-6xl font-semibold text-parchment tracking-wide leading-none mb-2">THE ERA</h1>
+      <p class="font-sans text-[0.7rem] tracking-[0.3em] text-gold-400/70 uppercase mb-1">2004 — 2026</p>
+      <p class="font-serif italic text-base sm:text-lg text-parchment/60 mt-3 mb-1">A story of a generation</p>
+      <button class="enter-btn" id="enterBtn" aria-label="Enter the book">
+        <span>Open the Memory</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== FIXED BG ==================== -->
+<div class="bg-fixed" aria-hidden="true">
+  <img src="BG.jpg" alt="">
+  <div class="bg-vignette"></div>
+</div>
+
+<!-- ==================== BOOK CONTENT ==================== -->
+<main class="book-content" id="book">
+
+  <!-- Header / Title page after cover -->
+  <header class="pt-16 pb-12 text-center chapter-block" id="header">
+    <div class="flex justify-center mb-6">
+      <div class="glow-dot"></div>
+    </div>
+    <p class="chapter-num mb-3">A Digital Memory</p>
+    <h1 class="font-serif text-3xl sm:text-4xl font-semibold text-parchment mb-2">THE ERA OF 10</h1>
+    <p class="font-serif italic text-gold-300/70 text-lg mb-8">Lionel Messi · 2004 — 2026</p>
+    <div class="gold-line max-w-[8rem] mx-auto mb-10"></div>
+    <p class="font-serif text-parchment/60 text-base leading-relaxed max-w-sm mx-auto">
+      Before the trophies, there was a boy.<br>
+      Before the legend, there was a dream.<br>
+      This is the memory of an era.
+    </p>
+  </header>
+
+  <!-- Table of Contents -->
+  <nav class="mb-20 chapter-block" id="toc" aria-label="Chapters">
+    <p class="chapter-num text-center mb-6">Contents</p>
+    <div class="space-y-0">
+      <a href="#ch1" class="toc-item">
+        <span class="toc-num">01</span>
+        <span class="toc-title">THE BOY FROM ROSARIO</span>
+      </a>
+      <a href="#ch2" class="toc-item">
+        <span class="toc-num">02</span>
+        <span class="toc-title">THE JOURNEY TO BARCELONA</span>
+      </a>
+      <a href="#ch3" class="toc-item">
+        <span class="toc-num">03</span>
+        <span class="toc-title">THE FIRST TOUCH</span>
+      </a>
+      <a href="#ch4" class="toc-item">
+        <span class="toc-num">04</span>
+        <span class="toc-title">THE LITTLE MAGICIAN</span>
+      </a>
+      <a href="#ch5" class="toc-item">
+        <span class="toc-num">05</span>
+        <span class="toc-title">THE RISE OF NUMBER 10</span>
+      </a>
+      <a href="#ch6" class="toc-item">
+        <span class="toc-num">06</span>
+        <span class="toc-title">THE RIVALRY</span>
+      </a>
+      <a href="#ch7" class="toc-item">
+        <span class="toc-num">07</span>
+        <span class="toc-title">THE PAIN OF ARGENTINA</span>
+      </a>
+      <a href="#ch8" class="toc-item">
+        <span class="toc-num">08</span>
+        <span class="toc-title">THE RETURN</span>
+      </a>
+      <a href="#ch9" class="toc-item">
+        <span class="toc-num">09</span>
+        <span class="toc-title">THE LAST DREAM</span>
+      </a>
+      <a href="#ch10" class="toc-item">
+        <span class="toc-num">10</span>
+        <span class="toc-title">THE EIGHTH</span>
+      </a>
+      <a href="#ch11" class="toc-item">
+        <span class="toc-num">11</span>
+        <span class="toc-title">A DIFFERENT CHAPTER</span>
+      </a>
+      <a href="#ch12" class="toc-item">
+        <span class="toc-num">12</span>
+        <span class="toc-title">THE FINAL CHAPTER</span>
+      </a>
+      <a href="#ch13" class="toc-item">
+        <span class="toc-num">13</span>
+        <span class="toc-title">THE LEGACY</span>
+      </a>
+      <a href="#ch14" class="toc-item">
+        <span class="toc-num">14</span>
+        <span class="toc-title">MY MEMORY</span>
+      </a>
+      <a href="#ch15" class="toc-item">
+        <span class="toc-num">15</span>
+        <span class="toc-title">THE TIME CAPSULE</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- CHAPTER 01 -->
+  <article class="chapter-block mb-24 sm:mb-32" id="ch1">
+    <div class="text-center mb-10 sm:mb-14">
+      <div class="flex justify-center mb-5">
+        <div class="w-8 h-px bg-gold-500/40"></div>
+      </div>
+      <p class="chapter-num mb-3">01</p>
+      <h2 class="chapter-title text-2xl sm:text-3xl md:text-4xl mb-3">THE BOY FROM ROSARIO</h2>
+      <p class="chapter-loc">ROSARIO, ARGENTINA</p>
+      <div class="gold-line max-w-[5rem] mx-auto mt-6"></div>
+    </div>
+
+    <div class="space-y-5 sm:space-y-6">
+      <p class="story-p">Before the world knew his name, before the number 10 became a symbol, before millions of people stood up just to watch him touch a football, there was only a little boy in Rosario.</p>
+      <p class="story-p">His name was Lionel Andrés Messi.</p>
+      <p class="story-p">He was born on June 24, 1987, in Rosario, Argentina.</p>
+      <p class="story-p">There was nothing that day to tell the world that something extraordinary had just begun.</p>
+      <p class="story-p">No stadium was waiting for him. No crowd was chanting his name. No one knew that one day, an entire generation would grow up watching the way he played football.</p>
+      <p class="story-p">He was simply a child.</p>
+      <p class="story-p">A quiet boy growing up in a football-loving city, surrounded by a family that loved him.</p>
+      <p class="story-p">And then there was football.</p>
+      <p class="story-p">It was already everywhere around him.</p>
+      <p class="story-p">His brothers played. His family loved the game. The streets of Rosario breathed football.</p>
+      <p class="story-p">And the little boy watched.</p>
+      <p class="story-p">Then, slowly, he began to play.</p>
+      <p class="story-p">A football at his feet seemed to change something inside him.</p>
+      <p class="story-p">He was smaller than many of the other children. But when the ball came to him, something seemed to disappear.</p>
+      <p class="story-p">The noise disappeared. The fear disappeared. Even the people around him seemed to disappear.</p>
+      <p class="story-p">There was only Lionel... and the ball.</p>
+      <p class="story-p">His grandmother, Celia, played a special role in those early years.</p>
+      <p class="story-p">She believed in the little boy.</p>
+      <p class="story-p">While others might have simply seen a child playing football, she saw something worth protecting.</p>
+      <p class="story-p">She took him to Grandoli, the small local club where his football journey truly began.</p>
+      <p class="story-p">He was still only a boy.</p>
+      <p class="story-p">But even then, there was something different about the way he moved.</p>
+      <p class="story-p">The ball seemed to stay close to him.</p>
+      <p class="story-p">As if it already knew where he wanted to go.</p>
+      <p class="story-p">But dreams do not always arrive without a price.</p>
+      <p class="story-p">As Lionel grew older, his family learned that he had a growth hormone deficiency.</p>
+      <p class="story-p">It was something no child should have to worry about.</p>
+      <p class="story-p">Yet Lionel kept playing.</p>
+      <p class="story-p">He kept running after the ball.</p>
+      <p class="story-p">He kept dreaming.</p>
+      <p class="story-p">And perhaps that was the beginning of the difference between the boy he was and the player he would become.</p>
+      <p class="story-p">He did not know what the future would ask from him.</p>
+      <p class="story-p">He only knew that football made him happy.</p>
+      <p class="story-p">Then came the moment when a dream became a difficult choice.</p>
+      <p class="story-p">The treatment he needed was expensive. His family did what they could. But eventually, the road ahead began to point somewhere far away.</p>
+      <p class="story-p">Away from Rosario.</p>
+      <p class="story-p">Away from the streets he knew.</p>
+      <p class="story-p">Away from the place where a little boy had first learned to love the game.</p>
+      <p class="story-p">Barcelona was waiting.</p>
+      <p class="story-p">But Lionel did not know what Barcelona would become.</p>
+      <p class="story-p">He did not know that one day he would walk onto the biggest stages in football.</p>
+      <p class="story-p">He did not know that children around the world would wear his name on their backs.</p>
+      <p class="story-p">He did not know that one day, millions would call him the greatest of his generation.</p>
+      <p class="story-p">He was still just a boy.</p>
+      <p class="story-p">A boy leaving the city that had raised him.</p>
+      <p class="story-p">And perhaps that is what makes the beginning of his story so beautiful.</p>
+      <p class="story-p">Before the trophies, there was sacrifice.</p>
+      <p class="story-p">Before the fame, there was uncertainty.</p>
+      <p class="story-p">Before the number 10, there was a little boy chasing a football.</p>
+      <p class="story-p">And before the world called him Messi...</p>
+      <p class="story-p">Rosario simply called him Lionel.</p>
+      <p class="story-p">The boy from Rosario.</p>
+    </div>
+
+    <div class="mt-12 sm:mt-16 pt-8 border-t border-white/5 text-center space-y-3">
+      <p class="ending-text">The world had not met Lionel Messi yet.</p>
+      <p class="ending-text">But his journey had already begun.</p>
+    </div>
+  </article>
+
+  <!-- CHAPTER 02 -->
+  <article class="chapter-block mb-24 sm:mb-32" id="ch2">
+    <div class="text-center mb-10 sm:mb-14">
+      <div class="flex justify-center mb-5">
+        <div class="w-8 h-px bg-gold-500/40"></div>
+      </div>
+      <p class="chapter-num mb-3">02</p>
+      <h2 class="chapter-title text-2xl sm:text-3xl md:text-4xl mb-3">THE JOURNEY TO BARCELONA</h2>
+      <p class="chapter-loc">BARCELONA, SPAIN — 2000</p>
+      <div class="gold-line max-w-[5rem] mx-auto mt-6"></div>
+    </div>
+
+    <div class="space-y-5 sm:space-y-6">
+      <p class="story-p">Rosario was home.</p>
+      <p class="story-p">It was where Lionel had grown up. Where football had first become part of his life. Where his family, friends, and childhood memories lived.</p>
+      <p class="story-p">But sometimes, a dream asks you to leave the place where it was born.</p>
+      <p class="story-p">In 2000, Lionel Messi was only thirteen years old.</p>
+      <p class="story-p">He was still a child.</p>
+      <p class="story-p">But the road ahead was already becoming bigger than the streets of Rosario.</p>
+      <p class="story-p">His family made a decision.</p>
+      <p class="story-p">They would cross the Atlantic and take Lionel to Spain.</p>
+      <p class="story-p">Barcelona was waiting.</p>
+      <p class="story-p">But nobody knew what would happen next.</p>
+      <p class="story-p">Lionel arrived in Barcelona in September 2000.</p>
+      <p class="story-p">He came for a trial.</p>
+      <p class="story-p">Not as a famous footballer. Not as a future legend.</p>
+      <p class="story-p">Just as a thirteen-year-old boy carrying a dream.</p>
+      <p class="story-p">And at first, even his size made people wonder.</p>
+      <p class="story-p">He was small. He was thin.</p>
+      <p class="story-p">To some, he did not look like the kind of player who could survive at the highest level.</p>
+      <p class="story-p">But then the ball reached his feet.</p>
+      <p class="story-p">And everything changed.</p>
+      <p class="story-p">For two weeks, Lionel trained with Barcelona.</p>
+      <p class="story-p">The people watching him began to see something that was difficult to explain.</p>
+      <p class="story-p">His body was small.</p>
+      <p class="story-p">But his football was not.</p>
+      <p class="story-p">He moved with the ball as if it belonged to him.</p>
+      <p class="story-p">He could run past players, change direction, and keep the ball close in a way that made people stop and watch.</p>
+      <p class="story-p">Still, Barcelona did not immediately say yes.</p>
+      <p class="story-p">There were doubts.</p>
+      <p class="story-p">Some people were not convinced.</p>
+      <p class="story-p">The future of a thirteen-year-old boy was impossible to guarantee.</p>
+      <p class="story-p">His family returned to Argentina.</p>
+      <p class="story-p">And then came the waiting.</p>
+      <p class="story-p">Days passed.</p>
+      <p class="story-p">Weeks passed.</p>
+      <p class="story-p">But there was still no final answer.</p>
+      <p class="story-p">For Lionel's family, this was not simply about football anymore.</p>
+      <p class="story-p">Their son was far from home, and the future was uncertain.</p>
+      <p class="story-p">They needed to know.</p>
+      <p class="story-p">Would Barcelona take him?</p>
+      <p class="story-p">Or would the family have to search for another path?</p>
+      <p class="story-p">Then, in December 2000, everything changed.</p>
+      <p class="story-p">Carles Rexach, Barcelona's technical director, watched Lionel play.</p>
+      <p class="story-p">He did not need much time.</p>
+      <p class="story-p">He had seen enough.</p>
+      <p class="story-p">But there was one small problem.</p>
+      <p class="story-p">There was no proper paper available for the agreement at that moment.</p>
+      <p class="story-p">So Rexach took a napkin.</p>
+      <p class="story-p">And on that small piece of paper, he wrote a promise.</p>
+      <p class="story-p"> Barcelona would sign Lionel Messi. </p>
+      <p class="story-p">The date was 14 December 2000.</p>
+      <p class="story-p">It looked like almost nothing.</p>
+      <p class="story-p">Just a napkin.</p>
+      <p class="story-p">A few handwritten words.</p>
+      <p class="story-p">But nobody in that room could have known what those words would eventually mean.</p>
+      <p class="story-p">That little piece of paper would become one of the most famous objects in football history.</p>
+      <p class="story-p">But even after the agreement, the journey was not suddenly easy.</p>
+      <p class="story-p">Lionel still had to leave everything familiar behind.</p>
+      <p class="story-p">His hometown. His friends. His childhood.</p>
+      <p class="story-p">And most importantly, his family.</p>
+      <p class="story-p">Barcelona was now becoming his new world.</p>
+      <p class="story-p">La Masia.</p>
+      <p class="story-p">A place where young footballers were trained not only as players, but also as young people.</p>
+      <p class="story-p">And Lionel entered that world as a quiet and shy thirteen-year-old.</p>
+      <p class="story-p">He was far away from the boy who had grown up in Rosario.</p>
+      <p class="story-p">Everything was new.</p>
+      <p class="story-p">The language. The people. The football environment. The life.</p>
+      <p class="story-p">And there was another obstacle.</p>
+      <p class="story-p">Because of delays with his transfer, Lionel could not play official youth matches for around six months.</p>
+      <p class="story-p">He could train.</p>
+      <p class="story-p">He could play some friendlies.</p>
+      <p class="story-p">But he had to wait.</p>
+      <p class="story-p">Imagine being thirteen years old, travelling across an ocean for your dream, finally reaching the academy you hoped for— and then being told to wait.</p>
+      <p class="story-p">Six months.</p>
+      <p class="story-p">Six months of uncertainty.</p>
+      <p class="story-p">Six months of watching, training, learning, and waiting for the moment when he could finally play.</p>
+      <p class="story-p">But Lionel stayed.</p>
+      <p class="story-p">He kept training.</p>
+      <p class="story-p">He kept learning.</p>
+      <p class="story-p">And slowly, the boy from Rosario began to find a place in Barcelona.</p>
+      <p class="story-p">He was not yet a star.</p>
+      <p class="story-p">He was not yet famous.</p>
+      <p class="story-p">Nobody knew how far his story would go.</p>
+      <p class="story-p">But the first door had opened.</p>
+      <p class="story-p">Rosario had given him the beginning.</p>
+      <p class="story-p">Barcelona had given him a chance.</p>
+      <p class="story-p">Now, it was time for Lionel to prove what lived inside him.</p>
+      <p class="story-p">The world still did not know his name.</p>
+      <p class="story-p">But inside La Masia, a small boy was beginning to write a story that football would never forget.</p>
+    </div>
+
+    <div class="mt-12 sm:mt-16 pt-8 border-t border-white/5 text-center space-y-3">
+      <p class="ending-text">He had crossed an ocean for a dream.</p>
+      <p class="ending-text">Now he had to discover what that dream would cost him.</p>
+      <p class="ending-text">And somewhere inside La Masia, the next chapter was waiting.</p>
+    </div>
+  </article>
+
+  <!-- CHAPTER 03 -->
+  <article class="chapter-block mb-24 sm:mb-32" id="ch3">
+    <div class="text-center mb-10 sm:mb-14">
+      <div class="flex justify-center mb-5">
+        <div class="w-8 h-px bg-gold-500/40"></div>
+      </div>
+      <p class="chapter-num mb-3">03</p>
+      <h2 class="chapter-title text-2xl sm:text-3xl md:text-4xl mb-3">THE FIRST TOUCH</h2>
+      <p class="chapter-loc">LA MASIA, BARCELONA — 2001–2004</p>
+      <div class="gold-line max-w-[5rem] mx-auto mt-6"></div>
+    </div>
+
+    <div class="space-y-5 sm:space-y-6">
+      <p class="story-p">Barcelona had opened the door.</p>
+      <p class="story-p">But walking through that door was only the beginning.</p>
+      <p class="story-p">Lionel was still thirteen.</p>
+      <p class="story-p">He was far from the streets of Rosario, far from the football fields of his childhood, and now surrounded by players who were also dreaming of becoming professionals.</p>
+      <p class="story-p">At La Masia, nobody was going to give him a place simply because Barcelona had chosen him.</p>
+      <p class="story-p">He had to earn it.</p>
+      <p class="story-p">And slowly, the little boy from Rosario began to show what he could do.</p>
+      <p class="story-p">On 7 April 2001, Lionel Messi played his first official match for a Barcelona youth team.</p>
+      <p class="story-p">He wore the number 9.</p>
+      <p class="story-p">Barcelona faced Amposta.</p>
+      <p class="story-p">They won 3–0.</p>
+      <p class="story-p">And the thirteen-year-old scored.</p>
+      <p class="story-p">It was only one goal.</p>
+      <p class="story-p">One small moment in a youth football match.</p>
+      <p class="story-p">But for Lionel, it was the beginning of something real.</p>
+      <p class="story-p">He was no longer simply the boy who had arrived from Argentina.</p>
+      <p class="story-p">He was beginning to belong.</p>
+      <p class="story-p">Then, almost immediately, football reminded him that nothing would come easily.</p>
+      <p class="story-p">In his second official match, against Tortosa, he suffered a fracture to his fibula.</p>
+      <p class="story-p">Suddenly, the football stopped.</p>
+      <p class="story-p">The boy who had travelled across an ocean to chase his dream had to watch from the side.</p>
+      <p class="story-p">He had to wait again.</p>
+      <p class="story-p">But waiting was becoming part of his story.</p>
+      <p class="story-p">He waited before Barcelona accepted him.</p>
+      <p class="story-p">He waited while his future was uncertain.</p>
+      <p class="story-p">And now, he had to wait for his body to heal.</p>
+      <p class="story-p">But he came back.</p>
+      <p class="story-p">And when he returned, he kept moving forward.</p>
+      <p class="story-p">U14.</p>
+      <p class="story-p">U16.</p>
+      <p class="story-p">U19.</p>
+      <p class="story-p">One level after another.</p>
+      <p class="story-p">He was growing older, but something else was happening too.</p>
+      <p class="story-p">He was growing faster than the system expected.</p>
+      <p class="story-p">His coaches kept moving him upward.</p>
+      <p class="story-p">The competition became harder.</p>
+      <p class="story-p">The players became stronger.</p>
+      <p class="story-p">The game became faster.</p>
+      <p class="story-p">But Lionel kept finding a way to make the ball feel simple.</p>
+      <p class="story-p">He was small.</p>
+      <p class="story-p">But he was difficult to stop.</p>
+      <p class="story-p">The ball stayed close to his feet.</p>
+      <p class="story-p">His movements were quick.</p>
+      <p class="story-p">And when he saw a space, he seemed to reach it before everyone else.</p>
+      <p class="story-p">Slowly, people inside Barcelona began to understand.</p>
+      <p class="story-p">This was not simply another talented boy.</p>
+      <p class="story-p">Something different was happening.</p>
+      <p class="story-p">Then came 2003.</p>
+      <p class="story-p">Lionel was sixteen years old.</p>
+      <p class="story-p">Barcelona travelled to Portugal to play a friendly match against Porto.</p>
+      <p class="story-p">Among the first-team players was a teenager from La Masia.</p>
+      <p class="story-p">Lionel Messi.</p>
+      <p class="story-p">In the 71st minute, he entered the pitch.</p>
+      <p class="story-p">For the first time, he was wearing the Barcelona first-team shirt.</p>
+      <p class="story-p">He was sixteen.</p>
+      <p class="story-p">The stadium was not celebrating him.</p>
+      <p class="story-p">The world was not watching him.</p>
+      <p class="story-p">There were no headlines calling him a legend.</p>
+      <p class="story-p">There was simply a young boy stepping onto a football pitch with a dream that had suddenly become much closer.</p>
+      <p class="story-p">But the real debut was still waiting.</p>
+      <p class="story-p">In March 2004, Messi made his debut for Barça B.</p>
+      <p class="story-p">He was moving closer.</p>
+      <p class="story-p">Youth football was behind him.</p>
+      <p class="story-p">Senior football was beginning to appear in front of him.</p>
+      <p class="story-p">And then came the night that changed everything.</p>
+      <p class="story-p">16 October 2004.</p>
+      <p class="story-p">Espanyol against Barcelona.</p>
+      <p class="story-p">The match was already underway.</p>
+      <p class="story-p">Barcelona were leading.</p>
+      <p class="story-p">Then, in the 82nd minute, Frank Rijkaard made a substitution.</p>
+      <p class="story-p">Deco came off.</p>
+      <p class="story-p">A seventeen-year-old boy stepped onto the pitch.</p>
+      <p class="story-p">His shirt carried the number 30.</p>
+      <p class="story-p">His name was Lionel Messi.</p>
+      <p class="story-p">It lasted only a few minutes.</p>
+      <p class="story-p">He did not score.</p>
+      <p class="story-p">He did not change the result.</p>
+      <p class="story-p">He did not lift a trophy.</p>
+      <p class="story-p">But something much bigger had happened.</p>
+      <p class="story-p">The boy who had once left Rosario had finally reached Barcelona's first team.</p>
+      <p class="story-p">Thirteen when he arrived.</p>
+      <p class="story-p">Seventeen when he made his official debut.</p>
+      <p class="story-p">Four years.</p>
+      <p class="story-p">Four years of waiting, injuries, training, growing, learning, and believing.</p>
+      <p class="story-p">And now, the door was no longer closed.</p>
+      <p class="story-p">It was open.</p>
+      <p class="story-p">The world still did not know what was coming.</p>
+      <p class="story-p">Barcelona had only seen the first touch.</p>
+      <p class="story-p">They had not yet seen the magic.</p>
+    </div>
+
+    <div class="mt-12 sm:mt-16 pt-8 border-t border-white/5 text-center space-y-3">
+      <p class="ending-text">The boy from Rosario had finally arrived.</p>
+      <p class="ending-text">But this was not the beginning of his legend.</p>
+      <p class="ending-text">It was only the first glimpse of it.</p>
+    </div>
+  </article>
+
+  <!-- CHAPTER 04 -->
+  <article class="chapter-block mb-24 sm:mb-32" id="ch4">
+    <div class="text-center mb-10 sm:mb-14">
+      <div class="flex justify-center mb-5">
+        <div class="w-8 h-px bg-gold-500/40"></div>
+      </div>
+      <p class="chapter-num mb-3">04</p>
+      <h2 class="chapter-title text-2xl sm:text-3xl md:text-4xl mb-3">THE LITTLE MAGICIAN</h2>
+      <p class="chapter-loc">BARCELONA — 2005–2008</p>
+      <div class="gold-line max-w-[5rem] mx-auto mt-6"></div>
+    </div>
+
+    <div class="space-y-5 sm:space-y-6">
+      <p class="story-p">The boy had finally entered the first team.</p>
+      <p class="story-p">But entering Barcelona was one thing.</p>
+      <p class="story-p">Staying there was another.</p>
+      <p class="story-p">Lionel Messi was still only seventeen.</p>
+      <p class="story-p">Around him were players the football world already knew.</p>
+      <p class="story-p">Ronaldinho. Eto'o. Deco. Xavi.</p>
+      <p class="story-p">They were stars.</p>
+      <p class="story-p">Messi was still the kid wearing number 30.</p>
+      <p class="story-p">But the kid was beginning to make people look twice.</p>
+      <p class="story-p">He was small.</p>
+      <p class="story-p">He was quiet.</p>
+      <p class="story-p">But when the ball came to his feet, he seemed to become someone else.</p>
+      <p class="story-p">On 1 May 2005, that feeling became something real.</p>
+      <p class="story-p">Barcelona were playing Albacete at Camp Nou.</p>
+      <p class="story-p">Messi came onto the pitch near the end of the match.</p>
+      <p class="story-p">And then, Ronaldinho found him.</p>
+      <p class="story-p">Messi put the ball in the net.</p>
+      <p class="story-p">But the goal was ruled out for offside.</p>
+      <p class="story-p">The moment disappeared.</p>
+      <p class="story-p">But there was still time for another.</p>
+      <p class="story-p">Ronaldinho sent the ball forward again.</p>
+      <p class="story-p">Messi moved toward it.</p>
+      <p class="story-p">One touch.</p>
+      <p class="story-p">Then another.</p>
+      <p class="story-p">And this time, the ball went over the goalkeeper and into the net.</p>
+      <p class="story-p">Goal.</p>
+      <p class="story-p">Lionel Messi had scored his first official goal for Barcelona.</p>
+      <p class="story-p">He was seventeen years old.</p>
+      <p class="story-p">And standing beside him was the player who had begun to believe in him.</p>
+      <p class="story-p">Ronaldinho.</p>
+      <p class="story-p">The world had not yet given Messi a name.</p>
+      <p class="story-p">But Barcelona was beginning to understand what it had.</p>
+      <p class="story-p">The following seasons changed everything.</p>
+      <p class="story-p">Messi became more important.</p>
+      <p class="story-p">More confident.</p>
+      <p class="story-p">More dangerous.</p>
+      <p class="story-p">In 2006, Barcelona became European champions.</p>
+      <p class="story-p">Messi was part of the team that lifted the Champions League trophy.</p>
+      <p class="story-p">He was still young.</p>
+      <p class="story-p">But he was no longer simply a boy waiting for his chance.</p>
+      <p class="story-p">He was becoming part of Barcelona's future.</p>
+      <p class="story-p">Then came 2007.</p>
+      <p class="story-p">And one night changed the way people looked at him.</p>
+      <p class="story-p">10 March.</p>
+      <p class="story-p">Camp Nou.</p>
+      <p class="story-p">Barcelona against Real Madrid.</p>
+      <p class="story-p">El Clásico.</p>
+      <p class="story-p">The biggest rivalry in Spanish football.</p>
+      <p class="story-p">Real Madrid scored.</p>
+      <p class="story-p">Barcelona answered.</p>
+      <p class="story-p">Madrid scored again.</p>
+      <p class="story-p">Barcelona came back again.</p>
+      <p class="story-p">The game kept changing.</p>
+      <p class="story-p">And then Messi took over.</p>
+      <p class="story-p">He scored.</p>
+      <p class="story-p">Then again.</p>
+      <p class="story-p">And again.</p>
+      <p class="story-p">Three goals.</p>
+      <p class="story-p">A hat-trick against Real Madrid.</p>
+      <p class="story-p">Messi was only nineteen.</p>
+      <p class="story-p">Yet on one of football's biggest nights, the youngest player on the pitch had become the centre of everything.</p>
+      <p class="story-p">The little boy was becoming a magician.</p>
+      <p class="story-p">But he was not finished.</p>
+      <p class="story-p">Just over a month later, another moment arrived.</p>
+      <p class="story-p">18 April 2007.</p>
+      <p class="story-p">Barcelona against Getafe.</p>
+      <p class="story-p">Messi received the ball deep inside his own half.</p>
+      <p class="story-p">Then he ran.</p>
+      <p class="story-p">One defender disappeared.</p>
+      <p class="story-p">Then another.</p>
+      <p class="story-p">Then another.</p>
+      <p class="story-p">He kept going.</p>
+      <p class="story-p">The ball stayed close to his feet.</p>
+      <p class="story-p">The defenders could not catch him.</p>
+      <p class="story-p">The goalkeeper came forward.</p>
+      <p class="story-p">Messi moved around him.</p>
+      <p class="story-p">And finally, he placed the ball into the empty net.</p>
+      <p class="story-p">Five opponents beaten.</p>
+      <p class="story-p">One extraordinary run.</p>
+      <p class="story-p">One goal that reminded the world of another famous run from another Argentine magician.</p>
+      <p class="story-p">Diego Maradona.</p>
+      <p class="story-p">Comparisons began.</p>
+      <p class="story-p">People started asking how far this young player could go.</p>
+      <p class="story-p">But Messi was still Messi.</p>
+      <p class="story-p">He did not seem interested in becoming someone else.</p>
+      <p class="story-p">He simply kept playing.</p>
+      <p class="story-p">Then came 2008.</p>
+      <p class="story-p">Ronaldinho left Barcelona.</p>
+      <p class="story-p">The player who had once welcomed the young Messi was leaving the club.</p>
+      <p class="story-p">But before leaving, something important was passed on.</p>
+      <p class="story-p">The number 10.</p>
+      <p class="story-p">The shirt Ronaldinho had worn was now Messi's.</p>
+      <p class="story-p">It was more than a number.</p>
+      <p class="story-p">It felt like a torch being passed from one magician to another.</p>
+      <p class="story-p">Ronaldinho had helped light the way.</p>
+      <p class="story-p">Now Messi had to walk it alone.</p>
+      <p class="story-p">He was no longer the little boy from La Masia.</p>
+      <p class="story-p">He was no longer simply Barcelona's young talent.</p>
+      <p class="story-p">He was becoming something much bigger.</p>
+      <p class="story-p">The number 10 was waiting.</p>
+      <p class="story-p">And with it, an entire era.</p>
+    </div>
+
+    <div class="mt-12 sm:mt-16 pt-8 border-t border-white/5 text-center space-y-3">
+      <p class="ending-text">First, they called him a boy.</p>
+      <p class="ending-text">Then they called him a magician.</p>
+      <p class="ending-text">Soon, the world would call him Number 10.</p>
+    </div>
+  </article>
+
+  <!-- CHAPTER 05 -->
+  <article class="chapter-block mb-24 sm:mb-32" id="ch5">
+    <div class="text-center mb-10 sm:mb-14">
+      <div class="flex justify-center mb-5">
+        <div class="w-8 h-px bg-gold-500/40"></div>
+      </div>
+      <p class="chapter-num mb-3">05</p>
+      <h2 class="chapter-title text-2xl sm:text-3xl md:text-4xl mb-3">THE RISE OF NUMBER 10</h2>
+      <p class="chapter-loc">BARCELONA — 2008–2012</p>
+      <div class="gold-line max-w-[5rem] mx-auto mt-6"></div>
+    </div>
+
+    <div class="space-y-5 sm:space-y-6">
+      <p class="story-p">Ronaldinho was gone.</p>
+      <p class="story-p">The magician who had once welcomed the young boy from La Masia had left Barcelona.</p>
+      <p class="story-p">And something was left behind.</p>
+      <p class="story-p">The number 10.</p>
+      <p class="story-p">Now, it belonged to Lionel Messi.</p>
+      <p class="story-p">In the summer of 2008, Messi began wearing the famous shirt.</p>
+      <p class="story-p">But nobody could have known what that number would eventually become.</p>
+      <p class="story-p">It was only a number.</p>
+      <p class="story-p">At least, that was what it looked like.</p>
+      <p class="story-p">Then came another change.</p>
+      <p class="story-p">Pep Guardiola became Barcelona's first-team coach.</p>
+      <p class="story-p">A new coach.</p>
+      <p class="story-p">A new number.</p>
+      <p class="story-p">And the beginning of a new era.</p>
+      <p class="story-p">Guardiola trusted Messi.</p>
+      <p class="story-p">And slowly, Barcelona began to build around the little Argentine.</p>
+      <p class="story-p">Xavi.</p>
+      <p class="story-p">Iniesta.</p>
+      <p class="story-p">Busquets.</p>
+      <p class="story-p">And Messi.</p>
+      <p class="story-p">The ball moved.</p>
+      <p class="story-p">The team moved.</p>
+      <p class="story-p">And somehow, Messi always seemed to be at the centre of it.</p>
+      <p class="story-p">Then came the 2008–09 season.</p>
+      <p class="story-p">Barcelona won La Liga.</p>
+      <p class="story-p">They won the Copa del Rey.</p>
+      <p class="story-p">And then came the Champions League.</p>
+      <p class="story-p">The final was against Manchester United.</p>
+      <p class="story-p">One of the biggest teams in Europe.</p>
+      <p class="story-p">One of the biggest nights in football.</p>
+      <p class="story-p">Barcelona won.</p>
+      <p class="story-p">And Messi scored.</p>
+      <p class="story-p">The boy who had once arrived in Barcelona as a thirteen-year-old was now scoring in a Champions League final.</p>
+      <p class="story-p">But that was only the beginning.</p>
+      <p class="story-p">2009 became something extraordinary.</p>
+      <p class="story-p">Barcelona won six major trophies in the same calendar year.</p>
+      <p class="story-p">Six.</p>
+      <p class="story-p">La Liga.</p>
+      <p class="story-p">Copa del Rey.</p>
+      <p class="story-p">Champions League.</p>
+      <p class="story-p">Spanish Super Cup.</p>
+      <p class="story-p">European Super Cup.</p>
+      <p class="story-p">Club World Cup.</p>
+      <p class="story-p">And at the centre of it all was the number 10.</p>
+      <p class="story-p">Messi was no longer Barcelona's young talent.</p>
+      <p class="story-p">He was becoming the face of the team.</p>
+      <p class="story-p">Then came another moment.</p>
+      <p class="story-p">The Ballon d'Or.</p>
+      <p class="story-p">In 2009, Lionel Messi won it for the first time.</p>
+      <p class="story-p">He was twenty-two years old.</p>
+      <p class="story-p">The world had finally caught up with what Barcelona had been watching for years.</p>
+      <p class="story-p">The little boy was now officially one of the greatest players in the world.</p>
+      <p class="story-p">But Messi did not stop.</p>
+      <p class="story-p">He became even more dangerous.</p>
+      <p class="story-p">Faster.</p>
+      <p class="story-p">More confident.</p>
+      <p class="story-p">More complete.</p>
+      <p class="story-p">Around him, Xavi and Iniesta controlled the rhythm of the game.</p>
+      <p class="story-p">And Messi found the spaces nobody else could see.</p>
+      <p class="story-p">In 2010, something almost impossible happened.</p>
+      <p class="story-p">Messi, Xavi, and Iniesta finished as the three finalists for the Ballon d'Or.</p>
+      <p class="story-p">Three players.</p>
+      <p class="story-p">One club.</p>
+      <p class="story-p">All connected to the same football philosophy.</p>
+      <p class="story-p">La Masia.</p>
+      <p class="story-p">Then came 2011.</p>
+      <p class="story-p">Wembley.</p>
+      <p class="story-p">Another Champions League final.</p>
+      <p class="story-p">Barcelona against Manchester United.</p>
+      <p class="story-p">The same opponent.</p>
+      <p class="story-p">Another enormous night.</p>
+      <p class="story-p">Barcelona won 3–1.</p>
+      <p class="story-p">And Messi scored.</p>
+      <p class="story-p">The number 10 was now standing at the centre of one of the greatest teams football had ever seen.</p>
+      <p class="story-p">Xavi.</p>
+      <p class="story-p">Iniesta.</p>
+      <p class="story-p">Busquets.</p>
+      <p class="story-p">Piqué.</p>
+      <p class="story-p">Dani Alves.</p>
+      <p class="story-p">And in front of them, Messi.</p>
+      <p class="story-p">The boy from Rosario had become the player Barcelona depended on.</p>
+      <p class="story-p">But there was still something changing.</p>
+      <p class="story-p">The number 10 was becoming more than a shirt number.</p>
+      <p class="story-p">It was becoming an identity.</p>
+      <p class="story-p">When people saw number 10, they began to think of Messi.</p>
+      <p class="story-p">When they saw Messi, they thought of number 10.</p>
+      <p class="story-p">The two had become almost impossible to separate.</p>
+      <p class="story-p">And as the goals kept coming, the records began to fall.</p>
+      <p class="story-p">The boy who once needed someone to believe in him was now making the world believe in him.</p>
+      <p class="story-p">By 2012, Messi had reached a place few footballers had ever reached.</p>
+      <p class="story-p">He was no longer chasing the great players of the past.</p>
+      <p class="story-p">He was beginning to create his own history.</p>
+      <p class="story-p">And somewhere beneath all the trophies, all the goals, and all the records, there was still the same boy.</p>
+      <p class="story-p">The boy who had left Rosario.</p>
+      <p class="story-p">The boy who had crossed an ocean for a dream.</p>
+      <p class="story-p">The boy who once wore number 30.</p>
+      <p class="story-p">Now, the whole world knew the number 10.</p>
+      <p class="story-p">And they knew the name written above it.</p>
+      <p class="story-p">Lionel Messi.</p>
+      <p class="story-p">But football was about to give him another story.</p>
+      <p class="story-p">Because greatness is rarely measured alone.</p>
+      <p class="story-p">Soon, another name would stand beside his.</p>
+      <p class="story-p">Another superstar.</p>
+      <p class="story-p">Another number.</p>
+      <p class="story-p">And an entire generation would begin to choose sides.</p>
+    </div>
+
+    <div class="mt-12 sm:mt-16 pt-8 border-t border-white/5 text-center space-y-3">
+      <p class="ending-text">The boy had become Number 10.</p>
+      <p class="ending-text">But now, the world was ready for a rivalry.</p>
+      <p class="ending-text">Messi was about to meet his greatest contemporary challenger.</p>
+    </div>
+  </article>
+
+  <!-- CHAPTER 06 -->
+  <article class="chapter-block mb-24 sm:mb-32" id="ch6">
+    <div class="text-center mb-10 sm:mb-14">
+      <div class="flex justify-center mb-5">
+        <div class="w-8 h-px bg-gold-500/40"></div>
+      </div>
+      <p class="chapter-num mb-3">06</p>
+      <h2 class="chapter-title text-2xl sm:text-3xl md:text-4xl mb-3">THE RIVALRY</h2>
+      <p class="chapter-loc">BARCELONA &amp; MADRID — 2009–2018</p>
+      <div class="gold-line max-w-[5rem] mx-auto mt-6"></div>
+    </div>
+
+    <div class="space-y-5 sm:space-y-6">
+      <p class="story-p">By now, the world knew Lionel Messi.</p>
+      <p class="story-p">The number 10.</p>
+      <p class="story-p">Barcelona's magician.</p>
+      <p class="story-p">The boy from Rosario had become one of the biggest names in football.</p>
+      <p class="story-p">But in 2009, another story was beginning.</p>
+      <p class="story-p">Cristiano Ronaldo arrived at Real Madrid.</p>
+      <p class="story-p">Suddenly, the greatest rivalry in football had a new stage.</p>
+      <p class="story-p">Barcelona.</p>
+      <p class="story-p">Real Madrid.</p>
+      <p class="story-p">Messi.</p>
+      <p class="story-p">Ronaldo.</p>
+      <p class="story-p">Two players.</p>
+      <p class="story-p">Two clubs.</p>
+      <p class="story-p">Two completely different styles.</p>
+      <p class="story-p">And one generation watching every moment.</p>
+      <p class="story-p">Messi played the game as if the ball was connected to his feet.</p>
+      <p class="story-p">Close control.</p>
+      <p class="story-p">Dribbling.</p>
+      <p class="story-p">Passing.</p>
+      <p class="story-p">Vision.</p>
+      <p class="story-p">Ronaldo was different.</p>
+      <p class="story-p">Power.</p>
+      <p class="story-p">Speed.</p>
+      <p class="story-p">Movement.</p>
+      <p class="story-p">A hunger for goals that seemed impossible to satisfy.</p>
+      <p class="story-p">They were different.</p>
+      <p class="story-p">But both wanted the same thing.</p>
+      <p class="story-p">To be the best.</p>
+      <p class="story-p">And every season, the question returned.</p>
+      <p class="story-p">Who was better?</p>
+      <p class="story-p">The answer never stayed simple.</p>
+      <p class="story-p">One would score.</p>
+      <p class="story-p">The other would answer.</p>
+      <p class="story-p">One would break a record.</p>
+      <p class="story-p">The other would chase it.</p>
+      <p class="story-p">And the world kept watching.</p>
+      <p class="story-p">But the rivalry was never only about two players.</p>
+      <p class="story-p">It was Barcelona against Real Madrid.</p>
+      <p class="story-p">El Clásico.</p>
+      <p class="story-p">The biggest stage for the two of them.</p>
+      <p class="story-p">Every time Messi walked onto the pitch against Madrid, millions watched.</p>
+      <p class="story-p">Every time Ronaldo faced Barcelona, millions watched again.</p>
+      <p class="story-p">In 2010, Barcelona produced one of the most memorable Clásico victories.</p>
+      <p class="story-p">Camp Nou.</p>
+      <p class="story-p">Barcelona 5.</p>
+      <p class="story-p">Real Madrid 0.</p>
+      <p class="story-p">But Madrid would not disappear.</p>
+      <p class="story-p">They came back.</p>
+      <p class="story-p">And in 2011, the rivalry reached another level.</p>
+      <p class="story-p">Barcelona and Real Madrid met again and again.</p>
+      <p class="story-p">La Liga.</p>
+      <p class="story-p">Copa del Rey.</p>
+      <p class="story-p">Champions League.</p>
+      <p class="story-p">The matches became bigger.</p>
+      <p class="story-p">The pressure became heavier.</p>
+      <p class="story-p">And every goal felt like a message.</p>
+      <p class="story-p">In the Champions League semi-final, Messi produced another unforgettable moment.</p>
+      <p class="story-p">He received the ball.</p>
+      <p class="story-p">He ran.</p>
+      <p class="story-p">One defender.</p>
+      <p class="story-p">Then another.</p>
+      <p class="story-p">And suddenly, he was through.</p>
+      <p class="story-p">Goal.</p>
+      <p class="story-p">Barcelona moved toward another Champions League final.</p>
+      <p class="story-p">But Madrid had their moments too.</p>
+      <p class="story-p">In the Copa del Rey final, Cristiano Ronaldo scored the winning goal.</p>
+      <p class="story-p">Nobody was running away.</p>
+      <p class="story-p">The rivalry continued.</p>
+      <p class="story-p">Season after season.</p>
+      <p class="story-p">Goal after goal.</p>
+      <p class="story-p">Record after record.</p>
+      <p class="story-p">The Ballon d'Or became another battlefield.</p>
+      <p class="story-p">Messi won it.</p>
+      <p class="story-p">Ronaldo answered.</p>
+      <p class="story-p">Messi won again.</p>
+      <p class="story-p">Ronaldo answered again.</p>
+      <p class="story-p">The competition never seemed to end.</p>
+      <p class="story-p">And perhaps that was what made it so extraordinary.</p>
+      <p class="story-p">They were not simply competing against the players around them.</p>
+      <p class="story-p">They were constantly pushing each other higher.</p>
+      <p class="story-p">The standards kept rising.</p>
+      <p class="story-p">The goals kept coming.</p>
+      <p class="story-p">The records kept falling.</p>
+      <p class="story-p">And an entire generation grew up watching them.</p>
+      <p class="story-p">Some chose Messi.</p>
+      <p class="story-p">Some chose Ronaldo.</p>
+      <p class="story-p">Some changed their minds every week.</p>
+      <p class="story-p">But everyone watched.</p>
+      <p class="story-p">Then came 2017.</p>
+      <p class="story-p">Santiago Bernabéu.</p>
+      <p class="story-p">Real Madrid against Barcelona.</p>
+      <p class="story-p">The match was almost over.</p>
+      <p class="story-p">And then Messi scored.</p>
+      <p class="story-p">A late winner.</p>
+      <p class="story-p">He stood in front of the Madrid crowd and celebrated with his shirt held high.</p>
+      <p class="story-p">Number 10.</p>
+      <p class="story-p">His name.</p>
+      <p class="story-p">His moment.</p>
+      <p class="story-p">Another page in the rivalry.</p>
+      <p class="story-p">But every era eventually changes.</p>
+      <p class="story-p">In 2018, Cristiano Ronaldo left Real Madrid.</p>
+      <p class="story-p">After nine years, the rivalry inside Spain was coming to an end.</p>
+      <p class="story-p">He left behind goals, trophies, records, and countless memories.</p>
+      <p class="story-p">Messi stayed.</p>
+      <p class="story-p">Barcelona stayed.</p>
+      <p class="story-p">But something was different.</p>
+      <p class="story-p">The football world had lost a rivalry it might never see again.</p>
+      <p class="story-p">Two players.</p>
+      <p class="story-p">Two different paths.</p>
+      <p class="story-p">Two different ways of becoming great.</p>
+      <p class="story-p">And for almost a decade, they had shared the same stage.</p>
+      <p class="story-p">Maybe the real question was never simply who was better.</p>
+      <p class="story-p">Maybe the real gift was that we got to see both of them at the same time.</p>
+      <p class="story-p">Messi.</p>
+      <p class="story-p">Ronaldo.</p>
+      <p class="story-p">Two names that became part of the same era.</p>
+      <p class="story-p">But while Messi was conquering Europe with Barcelona, there was another part of his story that still remained unfinished.</p>
+      <p class="story-p">Argentina.</p>
+      <p class="story-p">The country where his story had begun.</p>
+      <p class="story-p">The country that had given him his first football.</p>
+      <p class="story-p">The country where the boy from Rosario had first dreamed.</p>
+      <p class="story-p">And there, the story would become much more painful.</p>
+    </div>
+
+    <div class="mt-12 sm:mt-16 pt-8 border-t border-white/5 text-center space-y-3">
+      <p class="ending-text">For years, the world watched them compete.</p>
+      <p class="ending-text">But Messi's greatest battle was still waiting for him.</p>
+      <p class="ending-text">Not against Ronaldo.</p>
+      <p class="ending-text">Not against Barcelona's rivals.</p>
+      <p class="ending-text">But against the weight of an entire nation.</p>
+    </div>
+  </article>
+
+  <!-- CHAPTER 07 -->
+  <article class="chapter-block mb-24 sm:mb-32" id="ch7">
+    <div class="text-center mb-10 sm:mb-14">
+      <div class="flex justify-center mb-5">
+        <div class="w-8 h-px bg-gold-500/40"></div>
+      </div>
+      <p class="chapter-num mb-3">07</p>
+      <h2 class="chapter-title text-2xl sm:text-3xl md:text-4xl mb-3">THE PAIN OF ARGENTINA</h2>
+      <p class="chapter-loc">ARGENTINA — 2014–2016</p>
+      <div class="gold-line max-w-[5rem] mx-auto mt-6"></div>
+    </div>
+
+    <div class="space-y-5 sm:space-y-6">
+      <p class="story-p">With Barcelona, Lionel Messi had almost everything.</p>
+      <p class="story-p">Trophies.</p>
+      <p class="story-p">Records.</p>
+      <p class="story-p">Champions League nights.</p>
+      <p class="story-p">Ballon d'Ors.</p>
+      <p class="story-p">And the number 10 had become a symbol of greatness.</p>
+      <p class="story-p">But there was one thing he still could not hold.</p>
+      <p class="story-p">A major trophy with Argentina.</p>
+      <p class="story-p">And somehow, the country where his story had begun became the place where his heart would hurt the most.</p>
+      <p class="story-p">Then came 2014.</p>
+      <p class="story-p">Brazil.</p>
+      <p class="story-p">The World Cup.</p>
+      <p class="story-p">Messi was Argentina's captain.</p>
+      <p class="story-p">And this time, the dream felt close.</p>
+      <p class="story-p">Argentina kept moving forward.</p>
+      <p class="story-p">Match after match.</p>
+      <p class="story-p">Goal after goal.</p>
+      <p class="story-p">Until they reached the semi-final.</p>
+      <p class="story-p">Netherlands.</p>
+      <p class="story-p">Ninety minutes.</p>
+      <p class="story-p">No winner.</p>
+      <p class="story-p">Extra time.</p>
+      <p class="story-p">Still no winner.</p>
+      <p class="story-p">Penalties.</p>
+      <p class="story-p">Argentina survived.</p>
+      <p class="story-p">And suddenly, the final was waiting.</p>
+      <p class="story-p">13 July 2014.</p>
+      <p class="story-p">Maracanã.</p>
+      <p class="story-p">Argentina.</p>
+      <p class="story-p">Germany.</p>
+      <p class="story-p">One match between Messi and the dream.</p>
+      <p class="story-p">The game remained without a goal.</p>
+      <p class="story-p">Ninety minutes.</p>
+      <p class="story-p">Then extra time.</p>
+      <p class="story-p">And finally, Germany scored.</p>
+      <p class="story-p">1–0.</p>
+      <p class="story-p">The final whistle came.</p>
+      <p class="story-p">Argentina had lost.</p>
+      <p class="story-p">Messi had reached the biggest stage in international football.</p>
+      <p class="story-p">But the trophy was not his.</p>
+      <p class="story-p">He received the Golden Ball as the tournament's best player.</p>
+      <p class="story-p">But that award could not replace the World Cup.</p>
+      <p class="story-p">He had come so close.</p>
+      <p class="story-p">And still, he went home without it.</p>
+      <p class="story-p">Then came 2015.</p>
+      <p class="story-p">Copa América.</p>
+      <p class="story-p">Another tournament.</p>
+      <p class="story-p">Another opportunity.</p>
+      <p class="story-p">Argentina reached the final again.</p>
+      <p class="story-p">Chile stood between Messi and the trophy.</p>
+      <p class="story-p">Ninety minutes passed.</p>
+      <p class="story-p">No goal.</p>
+      <p class="story-p">Extra time came.</p>
+      <p class="story-p">Still nothing.</p>
+      <p class="story-p">Penalties.</p>
+      <p class="story-p">And Argentina lost.</p>
+      <p class="story-p">Again.</p>
+      <p class="story-p">Another final.</p>
+      <p class="story-p">Another empty-handed journey home.</p>
+      <p class="story-p">But Messi stayed.</p>
+      <p class="story-p">He tried again.</p>
+      <p class="story-p">And then came 2016.</p>
+      <p class="story-p">Copa América Centenario.</p>
+      <p class="story-p">Argentina reached the final once more.</p>
+      <p class="story-p">And once again, Chile was waiting.</p>
+      <p class="story-p">The match stayed goalless.</p>
+      <p class="story-p">Ninety minutes.</p>
+      <p class="story-p">Extra time.</p>
+      <p class="story-p">Nothing could separate them.</p>
+      <p class="story-p">So once again, everything came down to penalties.</p>
+      <p class="story-p">Messi stepped forward.</p>
+      <p class="story-p">He took his penalty.</p>
+      <p class="story-p">It did not go in.</p>
+      <p class="story-p">Argentina lost again.</p>
+      <p class="story-p">Three consecutive major finals.</p>
+      <p class="story-p">Three heartbreaks.</p>
+      <p class="story-p">2014.</p>
+      <p class="story-p">2015.</p>
+      <p class="story-p">2016.</p>
+      <p class="story-p">For Messi, the pain had become more than football.</p>
+      <p class="story-p">The player who seemed almost impossible to stop with Barcelona could not find the final piece with Argentina.</p>
+      <p class="story-p">And then, something happened.</p>
+      <p class="story-p">Messi said he was stepping away from international football.</p>
+      <p class="story-p">The boy who had once dreamed of representing Argentina was suddenly walking away from the national team.</p>
+      <p class="story-p">He had tried.</p>
+      <p class="story-p">He had reached finals.</p>
+      <p class="story-p">He had carried the number 10.</p>
+      <p class="story-p">But the trophy still refused to come.</p>
+      <p class="story-p">Maybe, for a moment, he believed that the dream was over.</p>
+      <p class="story-p">But Argentina was not finished with him.</p>
+      <p class="story-p">And perhaps, somewhere inside Messi, the boy from Rosario was not finished either.</p>
+      <p class="story-p">He returned.</p>
+      <p class="story-p">He put the shirt on again.</p>
+      <p class="story-p">He wore the number 10 again.</p>
+      <p class="story-p">And he walked back onto the pitch for Argentina.</p>
+      <p class="story-p">The story had not ended.</p>
+      <p class="story-p">The pain was still there.</p>
+      <p class="story-p">The disappointment was still there.</p>
+      <p class="story-p">But so was the dream.</p>
+      <p class="story-p">And sometimes, the most important part of a dream is not how many times you achieve it.</p>
+      <p class="story-p">It is how many times you are willing to return to it.</p>
+      <p class="story-p">Messi had fallen short.</p>
+      <p class="story-p">Three times.</p>
+      <p class="story-p">But he came back.</p>
+      <p class="story-p">Because the story of Argentina was not over yet.</p>
+      <p class="story-p">And somewhere ahead, another final was waiting.</p>
+      <p class="story-p">Another chance.</p>
+      <p class="story-p">Another dream.</p>
+      <p class="story-p">And perhaps, the greatest chapter of all was still unwritten.</p>
+    </div>
+
+    <div class="mt-12 sm:mt-16 pt-8 border-t border-white/5 text-center space-y-3">
+      <p class="ending-text">Three finals. Three heartbreaks.</p>
+      <p class="ending-text">He wanted to walk away.</p>
+      <p class="ending-text">But he came back.</p>
+      <p class="ending-text">Because the boy from Rosario still believed.</p>
+    </div>
+  </article>
+
+  <!-- CHAPTER 08 -->
+  <article class="chapter-block mb-24 sm:mb-32" id="ch8">
+    <div class="text-center mb-10 sm:mb-14">
+      <div class="flex justify-center mb-5">
+        <div class="w-8 h-px bg-gold-500/40"></div>
+      </div>
+      <p class="chapter-num mb-3">08</p>
+      <h2 class="chapter-title text-2xl sm:text-3xl md:text-4xl mb-3">THE RETURN</h2>
+      <p class="chapter-loc">ARGENTINA — 2016–2019</p>
+      <div class="gold-line max-w-[5rem] mx-auto mt-6"></div>
+    </div>
+
+    <div class="space-y-5 sm:space-y-6">
+      <p class="story-p">For a moment, Lionel Messi thought the story was over.</p>
+      <p class="story-p">Three finals.</p>
+      <p class="story-p">Three heartbreaks.</p>
+      <p class="story-p">And after the loss in the 2016 Copa América final, he walked away.</p>
+      <p class="story-p">He said he was done with the Argentina national team.</p>
+      <p class="story-p">The number 10 would no longer belong to the boy who had dreamed of wearing it for his country.</p>
+      <p class="story-p">At least, that was how it seemed.</p>
+      <p class="story-p">But some stories refuse to end when we want them to.</p>
+      <p class="story-p">Sixty-six days later, Messi returned.</p>
+      <p class="story-p">Argentina.</p>
+      <p class="story-p">Uruguay.</p>
+      <p class="story-p">The shirt was back on his shoulders.</p>
+      <p class="story-p">The number 10 was back.</p>
+      <p class="story-p">And the boy from Rosario was back where he had always wanted to be.</p>
+      <p class="story-p">The match was difficult.</p>
+      <p class="story-p">The pressure was enormous.</p>
+      <p class="story-p">But then Messi received the ball.</p>
+      <p class="story-p">One moment.</p>
+      <p class="story-p">One touch.</p>
+      <p class="story-p">One shot.</p>
+      <p class="story-p">Goal.</p>
+      <p class="story-p">Argentina won 1–0.</p>
+      <p class="story-p">He had returned.</p>
+      <p class="story-p">Not with a trophy.</p>
+      <p class="story-p">Not with a final victory.</p>
+      <p class="story-p">Just with a football, a shirt, and another chance.</p>
+      <p class="story-p">Sometimes, another chance is enough.</p>
+      <p class="story-p">But the road ahead was still difficult.</p>
+      <p class="story-p">Argentina needed to qualify for the 2018 World Cup.</p>
+      <p class="story-p">And as the qualifying campaign reached its final night, everything was still uncertain.</p>
+      <p class="story-p">Ecuador.</p>
+      <p class="story-p">Away from home.</p>
+      <p class="story-p">Argentina needed something special.</p>
+      <p class="story-p">And once again, Messi stepped forward.</p>
+      <p class="story-p">Ecuador scored first.</p>
+      <p class="story-p">Argentina were behind.</p>
+      <p class="story-p">Then Messi answered.</p>
+      <p class="story-p">Once.</p>
+      <p class="story-p">Twice.</p>
+      <p class="story-p">Three times.</p>
+      <p class="story-p">A hat-trick.</p>
+      <p class="story-p">Argentina won 3–1.</p>
+      <p class="story-p">And the World Cup dream stayed alive.</p>
+      <p class="story-p">The same player who had once walked away from Argentina was now the reason they were going to Russia.</p>
+      <p class="story-p">But football was not finished testing him.</p>
+      <p class="story-p">Russia.</p>
+      <p class="story-p">The 2018 World Cup.</p>
+      <p class="story-p">Argentina struggled through the group stage.</p>
+      <p class="story-p">But they survived.</p>
+      <p class="story-p">And Messi was still there.</p>
+      <p class="story-p">Still wearing number 10.</p>
+      <p class="story-p">Still carrying the weight of a nation.</p>
+      <p class="story-p">Then came France.</p>
+      <p class="story-p">The Round of 16.</p>
+      <p class="story-p">A match full of goals.</p>
+      <p class="story-p">A match full of hope.</p>
+      <p class="story-p">But when it ended, Argentina had lost 4–3.</p>
+      <p class="story-p">The World Cup was over.</p>
+      <p class="story-p">Again, Messi had come close.</p>
+      <p class="story-p">Again, he went home without the trophy.</p>
+      <p class="story-p">Then came 2019.</p>
+      <p class="story-p">Another Copa América.</p>
+      <p class="story-p">Another opportunity.</p>
+      <p class="story-p">Argentina reached the third-place match.</p>
+      <p class="story-p">They defeated Chile 2–1.</p>
+      <p class="story-p">But once again, the biggest trophy remained out of reach.</p>
+      <p class="story-p">Messi had returned.</p>
+      <p class="story-p">He had fought.</p>
+      <p class="story-p">He had carried on.</p>
+      <p class="story-p">But the dream was still waiting.</p>
+      <p class="story-p">And perhaps, that was the most important part of the story.</p>
+      <p class="story-p">Because returning did not mean that everything suddenly became easy.</p>
+      <p class="story-p">Returning meant accepting the pain and choosing to try again.</p>
+      <p class="story-p">Messi could have ended his Argentina story in 2016.</p>
+      <p class="story-p">But he didn't.</p>
+      <p class="story-p">He came back.</p>
+      <p class="story-p">He wore the shirt again.</p>
+      <p class="story-p">He carried the number 10 again.</p>
+      <p class="story-p">And somewhere inside him, the dream was still alive.</p>
+      <p class="story-p">The dream of winning something with Argentina.</p>
+      <p class="story-p">The dream of giving his country the moment he had been chasing for years.</p>
+      <p class="story-p">He did not know when it would happen.</p>
+      <p class="story-p">He did not know if it would happen at all.</p>
+      <p class="story-p">But he kept walking.</p>
+      <p class="story-p">And sometimes, the hardest journey is the one you continue after you have already learned how much losing hurts.</p>
+      <p class="story-p">The boy from Rosario was still chasing the same dream.</p>
+      <p class="story-p">Only now, he was no longer a boy.</p>
+      <p class="story-p">He was a captain.</p>
+      <p class="story-p">A leader.</p>
+      <p class="story-p">A legend.</p>
+      <p class="story-p">And still, he wanted one thing more than anything else.</p>
+      <p class="story-p">A trophy with Argentina.</p>
+      <p class="story-p">The dream was alive.</p>
+      <p class="story-p">And the final chapter of that dream was getting closer.</p>
+    </div>
+
+    <div class="mt-12 sm:mt-16 pt-8 border-t border-white/5 text-center space-y-3">
+      <p class="ending-text">He had walked away. Then he came back.</p>
+      <p class="ending-text">The pain had not disappeared.</p>
+      <p class="ending-text">But neither had the dream.</p>
+      <p class="ending-text">And now, Messi was going to chase it one last time.</p>
+    </div>
+  </article>
+
+  <!-- CHAPTER 09 -->
+  <article class="chapter-block mb-24 sm:mb-32" id="ch9">
+    <div class="text-center mb-10 sm:mb-14">
+      <div class="flex justify-center mb-5">
+        <div class="w-8 h-px bg-gold-500/40"></div>
+      </div>
+      <p class="chapter-num mb-3">09</p>
+      <h2 class="chapter-title text-2xl sm:text-3xl md:text-4xl mb-3">THE LAST DREAM</h2>
+      <p class="chapter-loc">ARGENTINA — 2021–2022</p>
+      <div class="gold-line max-w-[5rem] mx-auto mt-6"></div>
+    </div>
+
+    <div class="space-y-5 sm:space-y-6">
+      <p class="story-p">For years, Lionel Messi had chased the same dream.</p>
+      <p class="story-p">A trophy with Argentina.</p>
+      <p class="story-p">He had come close.</p>
+      <p class="story-p">He had reached finals.</p>
+      <p class="story-p">He had lost.</p>
+      <p class="story-p">And he had come back.</p>
+      <p class="story-p">Again.</p>
+      <p class="story-p">And again.</p>
+      <p class="story-p">Until 2021.</p>
+      <p class="story-p">Copa América.</p>
+      <p class="story-p">Brazil.</p>
+      <p class="story-p">Maracanã.</p>
+      <p class="story-p">The same stadium where another dream had once been broken.</p>
+      <p class="story-p">But this time, the story would be different.</p>
+      <p class="story-p">Argentina reached the final.</p>
+      <p class="story-p">Brazil stood between Messi and the trophy.</p>
+      <p class="story-p">The match was tense.</p>
+      <p class="story-p">Every minute felt heavy.</p>
+      <p class="story-p">Then Ángel Di María scored.</p>
+      <p class="story-p">Argentina led 1–0.</p>
+      <p class="story-p">Messi did not score in the final.</p>
+      <p class="story-p">But he stayed.</p>
+      <p class="story-p">He fought.</p>
+      <p class="story-p">He waited.</p>
+      <p class="story-p">And when the final whistle came, something finally changed.</p>
+      <p class="story-p">Argentina were champions.</p>
+      <p class="story-p">Messi had won his first major international trophy with the senior national team.</p>
+      <p class="story-p">Years of disappointment suddenly became one unforgettable night.</p>
+      <p class="story-p">The boy who had once wanted nothing more than to play for Argentina finally had something to hold.</p>
+      <p class="story-p">But there was still one dream left.</p>
+      <p class="story-p">The biggest one.</p>
+      <p class="story-p">The World Cup.</p>
+      <p class="story-p">In 2022, Messi returned to the biggest stage in football.</p>
+      <p class="story-p">Qatar.</p>
+      <p class="story-p">His fifth World Cup.</p>
+      <p class="story-p">And perhaps, his last.</p>
+      <p class="story-p">But the beginning was almost a nightmare.</p>
+      <p class="story-p">Argentina faced Saudi Arabia.</p>
+      <p class="story-p">They lost.</p>
+      <p class="story-p">1–2.</p>
+      <p class="story-p">Suddenly, the dream looked like it might disappear before it had even begun.</p>
+      <p class="story-p">But Messi had learned something over the years.</p>
+      <p class="story-p">A defeat did not have to be the end.</p>
+      <p class="story-p">Argentina came back.</p>
+      <p class="story-p">Mexico.</p>
+      <p class="story-p">Australia.</p>
+      <p class="story-p">Netherlands.</p>
+      <p class="story-p">Croatia.</p>
+      <p class="story-p">One match at a time.</p>
+      <p class="story-p">Messi scored.</p>
+      <p class="story-p">He assisted.</p>
+      <p class="story-p">He created.</p>
+      <p class="story-p">He led.</p>
+      <p class="story-p">And Argentina kept moving forward.</p>
+      <p class="story-p">Until there was only one match left.</p>
+      <p class="story-p">The final.</p>
+      <p class="story-p">18 December 2022.</p>
+      <p class="story-p">Lusail Stadium.</p>
+      <p class="story-p">Argentina.</p>
+      <p class="story-p">France.</p>
+      <p class="story-p">Messi.</p>
+      <p class="story-p">And one final dream.</p>
+      <p class="story-p">Argentina started with belief.</p>
+      <p class="story-p">Messi scored from the penalty spot.</p>
+      <p class="story-p">Ángel Di María scored again.</p>
+      <p class="story-p">2–0.</p>
+      <p class="story-p">The dream was getting closer.</p>
+      <p class="story-p">But football has never been that simple.</p>
+      <p class="story-p">France came back.</p>
+      <p class="story-p">Kylian Mbappé scored.</p>
+      <p class="story-p">Then again.</p>
+      <p class="story-p">2–2.</p>
+      <p class="story-p">Extra time.</p>
+      <p class="story-p">Messi scored again.</p>
+      <p class="story-p">3–2.</p>
+      <p class="story-p">But France refused to disappear.</p>
+      <p class="story-p">Mbappé completed his hat-trick.</p>
+      <p class="story-p">3–3.</p>
+      <p class="story-p">One hundred and twenty minutes.</p>
+      <p class="story-p">Everything had been given.</p>
+      <p class="story-p">And still, there was no winner.</p>
+      <p class="story-p">The World Cup final would be decided by penalties.</p>
+      <p class="story-p">Messi stepped forward.</p>
+      <p class="story-p">He had missed the crucial penalty in the 2016 Copa América final.</p>
+      <p class="story-p">Years later, he stood in front of another penalty.</p>
+      <p class="story-p">This time, he scored.</p>
+      <p class="story-p">Argentina kept going.</p>
+      <p class="story-p">One penalty.</p>
+      <p class="story-p">Then another.</p>
+      <p class="story-p">And finally, it was over.</p>
+      <p class="story-p">Argentina were World Champions.</p>
+      <p class="story-p">Messi dropped to his knees.</p>
+      <p class="story-p">The pressure.</p>
+      <p class="story-p">The defeats.</p>
+      <p class="story-p">The lost finals.</p>
+      <p class="story-p">The doubt.</p>
+      <p class="story-p">The years of waiting.</p>
+      <p class="story-p">All of it seemed to disappear in that moment.</p>
+      <p class="story-p">Then Messi walked toward the trophy.</p>
+      <p class="story-p">The World Cup.</p>
+      <p class="story-p">The one trophy that had always been missing.</p>
+      <p class="story-p">He lifted it.</p>
+      <p class="story-p">And for a moment, the world seemed to become quiet.</p>
+      <p class="story-p">The boy from Rosario had finally reached the dream.</p>
+      <p class="story-p">The same boy who once chased a football in Argentina.</p>
+      <p class="story-p">The same boy who left home for Barcelona.</p>
+      <p class="story-p">The same boy who had lost three major finals.</p>
+      <p class="story-p">The same boy who once thought his Argentina story was over.</p>
+      <p class="story-p">He came back.</p>
+      <p class="story-p">He kept walking.</p>
+      <p class="story-p">And finally, he reached the top.</p>
+      <p class="story-p">He had won the last dream.</p>
+      <p class="story-p">But every dream has a moment after it comes true.</p>
+      <p class="story-p">And now, the question was no longer whether Messi could win everything.</p>
+      <p class="story-p">He had.</p>
+      <p class="story-p">The question was— what would remain after the trophies?</p>
+      <p class="story-p">What would the number 10 mean when the journey was finally remembered?</p>
+      <p class="story-p">And perhaps, the next chapter was not about winning at all.</p>
+      <p class="story-p">It was about legacy.</p>
+    </div>
+
+    <div class="mt-12 sm:mt-16 pt-8 border-t border-white/5 text-center space-y-3">
+      <p class="ending-text">The boy from Rosario had finally reached the dream.</p>
+      <p class="ending-text">The World Cup was his.</p>
+      <p class="ending-text">But after the dream, there was still a story to tell.</p>
+    </div>
+  </article>
+
+  <!-- CHAPTER 10 -->
+  <article class="chapter-block mb-24 sm:mb-32" id="ch10">
+    <div class="text-center mb-10 sm:mb-14">
+      <div class="flex justify-center mb-5">
+        <div class="w-8 h-px bg-gold-500/40"></div>
+      </div>
+      <p class="chapter-num mb-3">10</p>
+      <h2 class="chapter-title text-2xl sm:text-3xl md:text-4xl mb-3">THE EIGHTH</h2>
+      <p class="chapter-loc">MIAMI &amp; PARIS — 2023</p>
+      <div class="gold-line max-w-[5rem] mx-auto mt-6"></div>
+    </div>
+
+    <div class="space-y-5 sm:space-y-6">
+      <p class="story-p">The dream was over.</p>
+      <p class="story-p">Not because it had failed.</p>
+      <p class="story-p">Because it had finally come true.</p>
+      <p class="story-p">Lionel Messi had won the World Cup.</p>
+      <p class="story-p">For years, that trophy had been the one thing missing.</p>
+      <p class="story-p">He had lost finals.</p>
+      <p class="story-p">He had walked away.</p>
+      <p class="story-p">He had returned.</p>
+      <p class="story-p">He had tried again.</p>
+      <p class="story-p">And in Qatar, he had finally lifted the trophy he had dreamed about since childhood.</p>
+      <p class="story-p">For the first time in his career, there was nothing left to prove.</p>
+      <p class="story-p">Or at least, that was how it felt.</p>
+      <p class="story-p">Then came another change.</p>
+      <p class="story-p">Barcelona was behind him.</p>
+      <p class="story-p">Paris was behind him.</p>
+      <p class="story-p">The World Cup was finally his.</p>
+      <p class="story-p">And now, Lionel Messi chose a different road.</p>
+      <p class="story-p">Miami.</p>
+      <p class="story-p">A new country.</p>
+      <p class="story-p">A new club.</p>
+      <p class="story-p">A completely different chapter.</p>
+      <p class="story-p">In July 2023, Messi joined Inter Miami.</p>
+      <p class="story-p">He arrived not as the uncertain boy who had once travelled from Rosario to Barcelona.</p>
+      <p class="story-p">He arrived as a World Champion.</p>
+      <p class="story-p">The number 10 was already legendary.</p>
+      <p class="story-p">His name was already known everywhere.</p>
+      <p class="story-p">Yet football was still waiting for him.</p>
+      <p class="story-p">And Messi still had something left to give.</p>
+      <p class="story-p">His first major opportunity with Miami came quickly.</p>
+      <p class="story-p">The Leagues Cup.</p>
+      <p class="story-p">A new tournament.</p>
+      <p class="story-p">A new team.</p>
+      <p class="story-p">A new beginning.</p>
+      <p class="story-p">Messi scored.</p>
+      <p class="story-p">Then scored again.</p>
+      <p class="story-p">And again.</p>
+      <p class="story-p">Match after match, the new number 10 began changing the feeling around the club.</p>
+      <p class="story-p">In the final, Miami faced Nashville.</p>
+      <p class="story-p">The match went all the way to penalties.</p>
+      <p class="story-p">Messi had already scored during the game.</p>
+      <p class="story-p">Then he stepped forward in the shootout.</p>
+      <p class="story-p">And scored again.</p>
+      <p class="story-p">Inter Miami won its first official trophy.</p>
+      <p class="story-p">Messi had arrived and changed the story almost immediately.</p>
+      <p class="story-p">But there was another moment coming.</p>
+      <p class="story-p">A moment that would look back at everything he had already achieved.</p>
+      <p class="story-p">Paris.</p>
+      <p class="story-p">October 2023.</p>
+      <p class="story-p">The Ballon d'Or.</p>
+      <p class="story-p">The award that had followed Messi throughout his career.</p>
+      <p class="story-p">He had won it before.</p>
+      <p class="story-p">Once.</p>
+      <p class="story-p">Twice.</p>
+      <p class="story-p">Three times.</p>
+      <p class="story-p">Four.</p>
+      <p class="story-p">Five.</p>
+      <p class="story-p">Six.</p>
+      <p class="story-p">Seven.</p>
+      <p class="story-p">And now, the world waited for the eighth.</p>
+      <p class="story-p">Lionel Messi won the Ballon d'Or.</p>
+      <p class="story-p">Number eight.</p>
+      <p class="story-p">His eighth.</p>
+      <p class="story-p">But this one felt different.</p>
+      <p class="story-p">Because the award was connected to the dream he had finally completed.</p>
+      <p class="story-p">The World Cup.</p>
+      <p class="story-p">Qatar.</p>
+      <p class="story-p">December 2022.</p>
+      <p class="story-p">The night when the missing piece finally became his.</p>
+      <p class="story-p">The eighth Ballon d'Or was not simply another trophy.</p>
+      <p class="story-p">It felt like a reflection of everything that had come before it.</p>
+      <p class="story-p">The boy from Rosario.</p>
+      <p class="story-p">The journey to Barcelona.</p>
+      <p class="story-p">La Masia.</p>
+      <p class="story-p">The first touch.</p>
+      <p class="story-p">The little magician.</p>
+      <p class="story-p">Number 10.</p>
+      <p class="story-p">The rivalry.</p>
+      <p class="story-p">The pain of Argentina.</p>
+      <p class="story-p">The return.</p>
+      <p class="story-p">The Copa América.</p>
+      <p class="story-p">The World Cup.</p>
+      <p class="story-p">And now, the eighth.</p>
+      <p class="story-p">Eight Ballon d'Ors.</p>
+      <p class="story-p">One World Cup.</p>
+      <p class="story-p">One Copa América.</p>
+      <p class="story-p">Champions League nights.</p>
+      <p class="story-p">Hundreds of goals.</p>
+      <p class="story-p">Thousands of memories.</p>
+      <p class="story-p">But numbers could never explain the whole story.</p>
+      <p class="story-p">Because beneath every trophy, every record, and every celebration, there was still the same person.</p>
+      <p class="story-p">The quiet boy who once played football in Rosario.</p>
+      <p class="story-p">The boy who left home because he believed there was something waiting for him on the other side of the ocean.</p>
+      <p class="story-p">He had travelled farther than that little boy could ever have imagined.</p>
+      <p class="story-p">But perhaps the most beautiful part was that he never completely left him behind.</p>
+      <p class="story-p">The world saw Lionel Messi.</p>
+      <p class="story-p">The trophies saw Lionel Messi.</p>
+      <p class="story-p">The records saw Lionel Messi.</p>
+      <p class="story-p">But somewhere beneath all of it, there was still the boy from Rosario.</p>
+      <p class="story-p">And maybe that was the real story.</p>
+      <p class="story-p">Not how many trophies he collected.</p>
+      <p class="story-p">Not how many records he broke.</p>
+      <p class="story-p">But how far one small dream could travel.</p>
+      <p class="story-p">From a football in Rosario...</p>
+      <p class="story-p">To the biggest stadiums in the world.</p>
+      <p class="story-p">From number 30...</p>
+      <p class="story-p">To number 10.</p>
+      <p class="story-p">From heartbreak...</p>
+      <p class="story-p">To the World Cup.</p>
+      <p class="story-p">And finally, to the eighth.</p>
+      <p class="story-p">The journey was still moving.</p>
+      <p class="story-p">There were still chapters ahead.</p>
+      <p class="story-p">But something had changed.</p>
+      <p class="story-p">Messi was no longer chasing the dream.</p>
+      <p class="story-p">He was living inside it.</p>
+    </div>
+
+    <div class="mt-12 sm:mt-16 pt-8 border-t border-white/5 text-center space-y-3">
+      <p class="ending-text">Eight Ballon d'Ors. One World Cup.</p>
+      <p class="ending-text">A lifetime of football.</p>
+      <p class="ending-text">And somewhere beneath it all, the boy from Rosario was still there.</p>
+      <p class="ending-text">The story was not over.</p>
+      <p class="ending-text">It was simply becoming a different chapter.</p>
+    </div>
+  </article>
+
+  <!-- CHAPTER 11 -->
+  <article class="chapter-block mb-24 sm:mb-32" id="ch11">
+    <div class="text-center mb-10 sm:mb-14">
+      <div class="flex justify-center mb-5">
+        <div class="w-8 h-px bg-gold-500/40"></div>
+      </div>
+      <p class="chapter-num mb-3">11</p>
+      <h2 class="chapter-title text-2xl sm:text-3xl md:text-4xl mb-3">A DIFFERENT CHAPTER</h2>
+      <p class="chapter-loc">BARCELONA → PARIS → MIAMI — 2021–2024</p>
+      <div class="gold-line max-w-[5rem] mx-auto mt-6"></div>
+    </div>
+
+    <div class="space-y-5 sm:space-y-6">
+      <p class="story-p">Sometimes, even after you reach the dream, life changes the road beneath your feet.</p>
+      <p class="story-p">For Lionel Messi, that change came in 2021.</p>
+      <p class="story-p">Barcelona had been his home for almost his entire professional life.</p>
+      <p class="story-p">La Masia.</p>
+      <p class="story-p">Camp Nou.</p>
+      <p class="story-p">The number 10.</p>
+      <p class="story-p">The trophies.</p>
+      <p class="story-p">The records.</p>
+      <p class="story-p">The memories.</p>
+      <p class="story-p">Seventeen years of becoming Lionel Messi.</p>
+      <p class="story-p">And then, suddenly, it was time to leave.</p>
+      <p class="story-p">Barcelona and Messi had reached an agreement to continue together.</p>
+      <p class="story-p">Both sides wanted it.</p>
+      <p class="story-p">But the new contract could not be registered because of financial and structural restrictions under La Liga regulations.</p>
+      <p class="story-p">On 5 August 2021, Barcelona announced that Messi would not be staying at the club.</p>
+      <p class="story-p">It was not the ending anyone had imagined.</p>
+      <p class="story-p">There was no final season planned for goodbye.</p>
+      <p class="story-p">No perfect farewell.</p>
+      <p class="story-p">No final night prepared for the moment.</p>
+      <p class="story-p">Just an ending that arrived too suddenly.</p>
+      <p class="story-p">The boy who had arrived in Barcelona at thirteen was leaving as one of the greatest players football had ever seen.</p>
+      <p class="story-p">And the next destination was Paris.</p>
+      <p class="story-p">Paris Saint-Germain.</p>
+      <p class="story-p">A new shirt.</p>
+      <p class="story-p">A new city.</p>
+      <p class="story-p">New teammates.</p>
+      <p class="story-p">A completely different life.</p>
+      <p class="story-p">Messi had spent years building a world around Barcelona.</p>
+      <p class="story-p">Now he had to learn how to live outside it.</p>
+      <p class="story-p">Paris gave him new experiences.</p>
+      <p class="story-p">New trophies.</p>
+      <p class="story-p">New memories.</p>
+      <p class="story-p">But something even bigger was happening elsewhere.</p>
+      <p class="story-p">Argentina.</p>
+      <p class="story-p">In 2021, Messi had finally won the Copa América.</p>
+      <p class="story-p">And in 2022, he had completed the dream of a lifetime.</p>
+      <p class="story-p">The World Cup.</p>
+      <p class="story-p">So when Messi left Paris in 2023, his career was already carrying something it had never carried before.</p>
+      <p class="story-p">Peace.</p>
+      <p class="story-p">The biggest dream was no longer missing.</p>
+      <p class="story-p">And then came another unexpected road.</p>
+      <p class="story-p">Miami.</p>
+      <p class="story-p">In July 2023, Lionel Messi joined Inter Miami.</p>
+      <p class="story-p">For the first time in his senior career, he was playing outside Europe.</p>
+      <p class="story-p">The pressure felt different.</p>
+      <p class="story-p">The city was different.</p>
+      <p class="story-p">The league was different.</p>
+      <p class="story-p">The atmosphere was different.</p>
+      <p class="story-p">But the football was still inside him.</p>
+      <p class="story-p">And almost immediately, the number 10 began changing the story of the club.</p>
+      <p class="story-p">His first appearance for Miami came against Cruz Azul.</p>
+      <p class="story-p">The match was almost over.</p>
+      <p class="story-p">Then came a free kick.</p>
+      <p class="story-p">Messi stood over the ball.</p>
+      <p class="story-p">One final moment.</p>
+      <p class="story-p">He struck it.</p>
+      <p class="story-p">The ball found the net.</p>
+      <p class="story-p">His first match.</p>
+      <p class="story-p">His first goal.</p>
+      <p class="story-p">His first winner.</p>
+      <p class="story-p">Miami had already begun to understand what had arrived.</p>
+      <p class="story-p">Then came the Leagues Cup.</p>
+      <p class="story-p">Messi kept scoring.</p>
+      <p class="story-p">He kept creating.</p>
+      <p class="story-p">He kept making the impossible look simple.</p>
+      <p class="story-p">In the final, Inter Miami faced Nashville.</p>
+      <p class="story-p">Messi scored.</p>
+      <p class="story-p">The match ended in a draw.</p>
+      <p class="story-p">Penalties followed.</p>
+      <p class="story-p">Messi stepped forward.</p>
+      <p class="story-p">And scored.</p>
+      <p class="story-p">Inter Miami became Leagues Cup champions.</p>
+      <p class="story-p">It was the first official trophy in the club's history.</p>
+      <p class="story-p">For Messi, it was another trophy.</p>
+      <p class="story-p">For Miami, it was the beginning of something new.</p>
+      <p class="story-p">And perhaps that was what made this chapter different.</p>
+      <p class="story-p">At Barcelona, Messi had been carrying the weight of history.</p>
+      <p class="story-p">In Paris, he had been adapting to another world.</p>
+      <p class="story-p">In Miami, it felt as though he was simply playing football again.</p>
+      <p class="story-p">Not because he had something left to prove.</p>
+      <p class="story-p">But because he still loved the game.</p>
+      <p class="story-p">Then came 2024.</p>
+      <p class="story-p">Another Copa América.</p>
+      <p class="story-p">Another Argentina team.</p>
+      <p class="story-p">Another tournament with the number 10 leading the way.</p>
+      <p class="story-p">Argentina reached the final against Colombia.</p>
+      <p class="story-p">Messi started the match.</p>
+      <p class="story-p">But this time, the night became emotional for a different reason.</p>
+      <p class="story-p">He was forced to leave the pitch in the second half.</p>
+      <p class="story-p">And for a moment, the image was not of the unstoppable magician.</p>
+      <p class="story-p">It was simply Lionel Messi.</p>
+      <p class="story-p">Sitting on the sidelines.</p>
+      <p class="story-p">Watching.</p>
+      <p class="story-p">Feeling.</p>
+      <p class="story-p">Argentina kept fighting.</p>
+      <p class="story-p">And eventually, they won the final.</p>
+      <p class="story-p">Messi lifted another Copa América trophy.</p>
+      <p class="story-p">His second.</p>
+      <p class="story-p">Another chapter had been added to the story.</p>
+      <p class="story-p">But something else had become clear.</p>
+      <p class="story-p">Time was moving.</p>
+      <p class="story-p">The boy from Rosario was no longer a boy.</p>
+      <p class="story-p">The young magician was no longer young.</p>
+      <p class="story-p">Even the greatest careers eventually reach their final pages.</p>
+      <p class="story-p">Messi knew it.</p>
+      <p class="story-p">The people watching him knew it.</p>
+      <p class="story-p">And somewhere ahead, another chapter was waiting.</p>
+      <p class="story-p">One that would not be about a new club.</p>
+      <p class="story-p">Not about another trophy.</p>
+      <p class="story-p">But about saying goodbye to the shirt he had carried for more than twenty years.</p>
+      <p class="story-p">Argentina.</p>
+      <p class="story-p">The country where the story began.</p>
+      <p class="story-p">The country where the boy from Rosario first learned to dream.</p>
+      <p class="story-p">The shirt he had once walked away from.</p>
+      <p class="story-p">The shirt he had returned to.</p>
+      <p class="story-p">And eventually, the shirt he would have to leave.</p>
+    </div>
+
+    <div class="mt-12 sm:mt-16 pt-8 border-t border-white/5 text-center space-y-3">
+      <p class="ending-text">Barcelona was behind him. Paris was behind him. Miami had become home.</p>
+      <p class="ending-text">But one final journey was still waiting.</p>
+      <p class="ending-text">The number 10 had one more story to tell.</p>
+    </div>
+  </article>
+
+  <!-- CHAPTER 12 -->
+  <article class="chapter-block mb-24 sm:mb-32" id="ch12">
+    <div class="text-center mb-10 sm:mb-14">
+      <div class="flex justify-center mb-5">
+        <div class="w-8 h-px bg-gold-500/40"></div>
+      </div>
+      <p class="chapter-num mb-3">12</p>
+      <h2 class="chapter-title text-2xl sm:text-3xl md:text-4xl mb-3">THE FINAL CHAPTER</h2>
+      <p class="chapter-loc">ARGENTINA — 2026</p>
+      <div class="gold-line max-w-[5rem] mx-auto mt-6"></div>
+    </div>
+
+    <div class="space-y-5 sm:space-y-6">
+      <p class="story-p">Every story eventually reaches a moment when the road begins to disappear.</p>
+      <p class="story-p">For Lionel Messi, that moment came in 2026.</p>
+      <p class="story-p">He had already won the World Cup.</p>
+      <p class="story-p">He had already won the Copa América.</p>
+      <p class="story-p">He had already lifted trophies that once seemed impossible.</p>
+      <p class="story-p">But there was one final journey waiting.</p>
+      <p class="story-p">The World Cup.</p>
+      <p class="story-p">One more time.</p>
+      <p class="story-p">2026.</p>
+      <p class="story-p">Messi returned to the biggest stage in international football.</p>
+      <p class="story-p">This time, he was no longer the young captain carrying the weight of an unfinished dream.</p>
+      <p class="story-p">He was the World Champion.</p>
+      <p class="story-p">The number 10 had already written its greatest chapter.</p>
+      <p class="story-p">But Messi kept going.</p>
+      <p class="story-p">Argentina made another extraordinary journey through the tournament.</p>
+      <p class="story-p">Match after match, the number 10 kept appearing.</p>
+      <p class="story-p">One final World Cup.</p>
+      <p class="story-p">One final chance to walk onto football's biggest stage.</p>
+      <p class="story-p">And Argentina reached the final.</p>
+      <p class="story-p">Again.</p>
+      <p class="story-p">The same nation that had once lost three major finals with Messi had now returned to the biggest match in the world.</p>
+      <p class="story-p">But this time, the ending would be different.</p>
+      <p class="story-p">Spain stood between Argentina and another World Cup.</p>
+      <p class="story-p">The match went on.</p>
+      <p class="story-p">Ninety minutes were not enough.</p>
+      <p class="story-p">Extra time came.</p>
+      <p class="story-p">And eventually, Spain scored.</p>
+      <p class="story-p">1–0.</p>
+      <p class="story-p">Argentina had lost the World Cup final.</p>
+      <p class="story-p">But this defeat was not like 2014.</p>
+      <p class="story-p">Messi was not leaving without the trophy he had spent his life chasing.</p>
+      <p class="story-p">He had already lifted it in Qatar.</p>
+      <p class="story-p">This time, there was no missing piece.</p>
+      <p class="story-p">Only the feeling that time was moving forward.</p>
+      <p class="story-p">And Messi knew it.</p>
+      <p class="story-p">On 31 August 2026, he announced his retirement from international football.</p>
+      <p class="story-p">Not football itself.</p>
+      <p class="story-p">Argentina.</p>
+      <p class="story-p">The shirt.</p>
+      <p class="story-p">The number 10.</p>
+      <p class="story-p">The country he had represented for more than twenty years.</p>
+      <p class="story-p">But one final night was still waiting.</p>
+      <p class="story-p">Buenos Aires.</p>
+      <p class="story-p">Estadio Monumental.</p>
+      <p class="story-p">6 October 2026.</p>
+      <p class="story-p">Argentina.</p>
+      <p class="story-p">Benin.</p>
+      <p class="story-p">This was no longer simply a football match.</p>
+      <p class="story-p">It was goodbye.</p>
+      <p class="story-p">More than 85,000 people filled the stadium.</p>
+      <p class="story-p">They had not come simply to watch another game.</p>
+      <p class="story-p">They had come to say thank you.</p>
+      <p class="story-p">The boy from Rosario had become Argentina's captain.</p>
+      <p class="story-p">And now, Argentina was preparing to say goodbye to its number 10.</p>
+      <p class="story-p">The match began.</p>
+      <p class="story-p">And for a while, nothing happened.</p>
+      <p class="story-p">Then Argentina found the first goal.</p>
+      <p class="story-p">Nicolás Otamendi.</p>
+      <p class="story-p">Messi had provided the assist.</p>
+      <p class="story-p">Later, Nicolás Paz scored.</p>
+      <p class="story-p">Messi provided another assist.</p>
+      <p class="story-p">Two assists.</p>
+      <p class="story-p">But the night still had one final moment for him.</p>
+      <p class="story-p">A penalty.</p>
+      <p class="story-p">Messi stood over the ball.</p>
+      <p class="story-p">One last time.</p>
+      <p class="story-p">He took a breath.</p>
+      <p class="story-p">He stepped forward.</p>
+      <p class="story-p">And scored.</p>
+      <p class="story-p">Argentina 3.</p>
+      <p class="story-p">Benin 0.</p>
+      <p class="story-p">His 126th goal for Argentina.</p>
+      <p class="story-p">His last.</p>
+      <p class="story-p">The final goal of an international career that had begun more than twenty years earlier.</p>
+      <p class="story-p">And somehow, even the ending looked like Messi.</p>
+      <p class="story-p">A goal.</p>
+      <p class="story-p">Two assists.</p>
+      <p class="story-p">A victory.</p>
+      <p class="story-p">And then, silence.</p>
+      <p class="story-p">The final whistle came.</p>
+      <p class="story-p">The teammates gathered around him.</p>
+      <p class="story-p">The stadium stood.</p>
+      <p class="story-p">The fans sang his name.</p>
+      <p class="story-p">And Messi looked around.</p>
+      <p class="story-p">Perhaps he knew that he would never wear this shirt in a match again.</p>
+      <p class="story-p">The shirt he had worn through defeats.</p>
+      <p class="story-p">The shirt he had worn through doubt.</p>
+      <p class="story-p">The shirt he had once walked away from.</p>
+      <p class="story-p">The shirt he had returned to.</p>
+      <p class="story-p">The shirt he eventually lifted to the sky with a World Cup in his hands.</p>
+      <p class="story-p">Now, it was time to put it down.</p>
+      <p class="story-p">His Argentina career ended with 208 appearances.</p>
+      <p class="story-p">126 goals.</p>
+      <p class="story-p">70 assists.</p>
+      <p class="story-p">A World Cup.</p>
+      <p class="story-p">Two Copa América titles.</p>
+      <p class="story-p">A Finalissima.</p>
+      <p class="story-p">And a journey that had lasted twenty-one years.</p>
+      <p class="story-p">But numbers could never explain what Argentina had just witnessed.</p>
+      <p class="story-p">Because this was not only the ending of a football career with a national team.</p>
+      <p class="story-p">It was the ending of a relationship between a player and a country.</p>
+      <p class="story-p">A relationship that had once been full of questions.</p>
+      <p class="story-p">A relationship that had known disappointment.</p>
+      <p class="story-p">A relationship that had survived heartbreak.</p>
+      <p class="story-p">And eventually, a relationship built on love.</p>
+      <p class="story-p">From the boy who left Rosario at thirteen...</p>
+      <p class="story-p">To the captain who lifted the World Cup.</p>
+      <p class="story-p">From the player Argentina once questioned...</p>
+      <p class="story-p">To the player Argentina would never forget.</p>
+      <p class="story-p">Twenty-one years.</p>
+      <p class="story-p">One hundred and twenty-six goals.</p>
+      <p class="story-p">Two hundred and eight appearances.</p>
+      <p class="story-p">One number.</p>
+      <p class="story-p">Ten.</p>
+      <p class="story-p">And one story that had finally reached its last page.</p>
+      <p class="story-p">But perhaps, the most beautiful part of the ending was not the stadium.</p>
+      <p class="story-p">Not the trophies.</p>
+      <p class="story-p">Not the records.</p>
+      <p class="story-p">It was the thought that somewhere beneath the captain, beneath the champion, beneath the legend...</p>
+      <p class="story-p">There was still the little boy from Rosario.</p>
+      <p class="story-p">The boy who simply loved football.</p>
+      <p class="story-p">The boy who had no idea where the road would take him.</p>
+      <p class="story-p">He had left home chasing a dream.</p>
+      <p class="story-p">And after everything...</p>
+      <p class="story-p">He came home as a champion.</p>
+    </div>
+
+    <div class="mt-12 sm:mt-16 pt-8 border-t border-white/5 text-center space-y-3">
+      <p class="ending-text">The final whistle had sounded.</p>
+      <p class="ending-text">The number 10 had played its final match for Argentina.</p>
+      <p class="ending-text">But legends do not disappear when the game ends.</p>
+      <p class="ending-text">They remain in the memories of everyone who watched them.</p>
+      <p class="ending-text">The boy from Rosario had finally come home.</p>
+    </div>
+  </article>
+
+  <!-- CHAPTER 13 -->
+  <article class="chapter-block mb-24 sm:mb-32" id="ch13">
+    <div class="text-center mb-10 sm:mb-14">
+      <div class="flex justify-center mb-5">
+        <div class="w-8 h-px bg-gold-500/40"></div>
+      </div>
+      <p class="chapter-num mb-3">13</p>
+      <h2 class="chapter-title text-2xl sm:text-3xl md:text-4xl mb-3">THE LEGACY</h2>
+      <p class="chapter-loc">BEYOND THE GAME</p>
+      <div class="gold-line max-w-[5rem] mx-auto mt-6"></div>
+    </div>
+
+    <div class="space-y-5 sm:space-y-6">
+      <p class="story-p">The final whistle had sounded.</p>
+      <p class="story-p">The shirt had been taken off.</p>
+      <p class="story-p">The stadium had said goodbye.</p>
+      <p class="story-p">And Lionel Messi had walked away from international football.</p>
+      <p class="story-p">But a career does not truly end when the player leaves the pitch.</p>
+      <p class="story-p">Some careers become history.</p>
+      <p class="story-p">Others become something more.</p>
+      <p class="story-p">They become memories.</p>
+      <p class="story-p">They become inspiration.</p>
+      <p class="story-p">They become part of the childhood of millions of people.</p>
+      <p class="story-p">Lionel Messi's story had become all of those things.</p>
+      <p class="story-p">There were the numbers.</p>
+      <p class="story-p">The goals.</p>
+      <p class="story-p">The assists.</p>
+      <p class="story-p">The trophies.</p>
+      <p class="story-p">The records.</p>
+      <p class="story-p">Eight Ballon d'Ors.</p>
+      <p class="story-p">A World Cup.</p>
+      <p class="story-p">Copa América titles.</p>
+      <p class="story-p">Champions League trophies.</p>
+      <p class="story-p">League titles.</p>
+      <p class="story-p">More goals than most players could ever imagine.</p>
+      <p class="story-p">More moments than anyone could ever count.</p>
+      <p class="story-p">But numbers are only one way to remember a player.</p>
+      <p class="story-p">They can tell us how many goals he scored.</p>
+      <p class="story-p">They can tell us how many trophies he lifted.</p>
+      <p class="story-p">They can tell us how many matches he played.</p>
+      <p class="story-p">But numbers cannot tell us what it felt like to watch him.</p>
+      <p class="story-p">They cannot explain the silence before a free kick.</p>
+      <p class="story-p">The sudden movement before a defender realized he was gone.</p>
+      <p class="story-p">The moment when the ball seemed to stay attached to his foot.</p>
+      <p class="story-p">The feeling inside a stadium when Messi received the ball and everyone knew something might happen.</p>
+      <p class="story-p">That is part of his legacy too.</p>
+      <p class="story-p">He changed the way people imagined football.</p>
+      <p class="story-p">Not by becoming the biggest player on the pitch.</p>
+      <p class="story-p">But by showing how far skill, intelligence, patience, and belief could take someone.</p>
+      <p class="story-p">He showed that greatness does not always have to look powerful.</p>
+      <p class="story-p">Sometimes, it can be quiet.</p>
+      <p class="story-p">Sometimes, it can be small.</p>
+      <p class="story-p">Sometimes, it can simply be a left foot touching a football.</p>
+      <p class="story-p">And perhaps that is why so many children saw themselves in him.</p>
+      <p class="story-p">A child could watch Messi and dream.</p>
+      <p class="story-p">Not because every child would become Messi.</p>
+      <p class="story-p">But because Messi made the dream feel possible.</p>
+      <p class="story-p">He was once the child who had to leave his home to chase his dream.</p>
+      <p class="story-p">He was once the player people wondered about.</p>
+      <p class="story-p">Too small.</p>
+      <p class="story-p">Too young.</p>
+      <p class="story-p">Too uncertain.</p>
+      <p class="story-p">But he kept going.</p>
+      <p class="story-p">And that may be the most important part of his story.</p>
+      <p class="story-p">Not that he never faced doubt.</p>
+      <p class="story-p">But that doubt never became the end of his journey.</p>
+      <p class="story-p">He lost finals.</p>
+      <p class="story-p">He faced criticism.</p>
+      <p class="story-p">He walked away.</p>
+      <p class="story-p">He returned.</p>
+      <p class="story-p">He lost again.</p>
+      <p class="story-p">And he kept walking.</p>
+      <p class="story-p">Until one day, he lifted the World Cup.</p>
+      <p class="story-p">That is why his legacy cannot belong to trophies alone.</p>
+      <p class="story-p">His legacy belongs to everyone who learned something from the journey.</p>
+      <p class="story-p">To the child who kept practising.</p>
+      <p class="story-p">To the player who refused to give up.</p>
+      <p class="story-p">To the fan who stayed through the losses.</p>
+      <p class="story-p">To the person who discovered that being different does not mean being less.</p>
+      <p class="story-p">One day, the records will be broken.</p>
+      <p class="story-p">One day, another player will wear the number 10.</p>
+      <p class="story-p">Another player will score goals.</p>
+      <p class="story-p">Another player will lift trophies.</p>
+      <p class="story-p">Football will continue.</p>
+      <p class="story-p">It always does.</p>
+      <p class="story-p">But some moments cannot be replaced.</p>
+      <p class="story-p">The night at Wembley.</p>
+      <p class="story-p">The goal against Getafe.</p>
+      <p class="story-p">The nights against Real Madrid.</p>
+      <p class="story-p">The tears with Argentina.</p>
+      <p class="story-p">The Copa América in 2021.</p>
+      <p class="story-p">The World Cup in 2022.</p>
+      <p class="story-p">The eighth Ballon d'Or.</p>
+      <p class="story-p">And finally, the last time he wore the Argentina shirt.</p>
+      <p class="story-p">These moments now belong to history.</p>
+      <p class="story-p">But history is not only something written in books.</p>
+      <p class="story-p">Sometimes, history lives inside people.</p>
+      <p class="story-p">Inside the child who remembers watching Messi for the first time.</p>
+      <p class="story-p">Inside the fan who remembers where they were when Argentina won the World Cup.</p>
+      <p class="story-p">Inside the person who still smiles when they see the number 10.</p>
+      <p class="story-p">And somewhere far away, in Rosario, there is still a memory of where all of this began.</p>
+      <p class="story-p">Before the trophies.</p>
+      <p class="story-p">Before the stadiums.</p>
+      <p class="story-p">Before the records.</p>
+      <p class="story-p">Before the number 10.</p>
+      <p class="story-p">There was a boy.</p>
+      <p class="story-p">A football.</p>
+      <p class="story-p">And a dream.</p>
+      <p class="story-p">The world eventually called him a legend.</p>
+      <p class="story-p">But perhaps the most beautiful thing about his legacy is that he never needed to stop being that boy.</p>
+      <p class="story-p">He simply carried him all the way to the top.</p>
+    </div>
+
+    <div class="mt-12 sm:mt-16 pt-8 border-t border-white/5 text-center space-y-3">
+      <p class="ending-text">Trophies become history. Records become numbers.</p>
+      <p class="ending-text">But inspiration can last forever.</p>
+      <p class="ending-text">The game will continue.</p>
+      <p class="ending-text">The number 10 will belong to someone else.</p>
+      <p class="ending-text">But the boy from Rosario will always have a place in football.</p>
+    </div>
+  </article>
+
+  <!-- CHAPTER 14 -->
+  <article class="chapter-block mb-24 sm:mb-32" id="ch14">
+    <div class="text-center mb-10 sm:mb-14">
+      <div class="flex justify-center mb-5">
+        <div class="w-8 h-px bg-gold-500/40"></div>
+      </div>
+      <p class="chapter-num mb-3">14</p>
+      <h2 class="chapter-title text-2xl sm:text-3xl md:text-4xl mb-3">MY MEMORY</h2>
+      <p class="chapter-loc">MY JOURNEY WITH MESSI</p>
+      <div class="gold-line max-w-[5rem] mx-auto mt-6"></div>
+    </div>
+
+    <div class="space-y-5 sm:space-y-6">
+      <p class="story-p">This is not the story of how I watched Lionel Messi from the beginning.</p>
+      <p class="story-p">Because I didn't.</p>
+      <p class="story-p">I was not someone who understood football from childhood.</p>
+      <p class="story-p">For a long time, football was simply something I saw people become excited about.</p>
+      <p class="story-p">Then came the World Cup.</p>
+      <p class="story-p">And slowly, I began to understand what football meant to so many people.</p>
+      <p class="story-p">Argentina was one of the first teams that caught my attention.</p>
+      <p class="story-p">But at that time, I still did not understand the game deeply.</p>
+      <p class="story-p">I watched.</p>
+      <p class="story-p">I supported.</p>
+      <p class="story-p">But I did not yet know what football would eventually mean to me.</p>
+      <p class="story-p">Then came 2018.</p>
+      <p class="story-p">That was when I truly began to know Argentina.</p>
+      <p class="story-p">And somewhere inside that team, I began to know Lionel Messi.</p>
+      <p class="story-p">I knew his name.</p>
+      <p class="story-p">I knew he was special.</p>
+      <p class="story-p">But I still did not understand his story.</p>
+      <p class="story-p">I was not yet deeply connected to him.</p>
+      <p class="story-p">Argentina's journey ended.</p>
+      <p class="story-p">France became World Champions.</p>
+      <p class="story-p">And life moved on.</p>
+      <p class="story-p">At that time, I did not know that another World Cup would change everything for me.</p>
+      <p class="story-p">2022.</p>
+      <p class="story-p">I still was not someone who watched every football match.</p>
+      <p class="story-p">Football had not yet become a deep passion in my life.</p>
+      <p class="story-p">But something was different this time.</p>
+      <p class="story-p">I started watching Argentina.</p>
+      <p class="story-p">I started watching Messi.</p>
+      <p class="story-p">And slowly, I found myself caring about what happened next.</p>
+      <p class="story-p">Then came the final.</p>
+      <p class="story-p">Argentina.</p>
+      <p class="story-p">France.</p>
+      <p class="story-p">The World Cup.</p>
+      <p class="story-p">And I watched Lionel Messi lift it.</p>
+      <p class="story-p">I watched Argentina become World Champions.</p>
+      <p class="story-p">I watched the number 10 finally reach the trophy that had been missing from his story.</p>
+      <p class="story-p">At that moment, I did not know every detail of his journey.</p>
+      <p class="story-p">I did not know every heartbreak.</p>
+      <p class="story-p">I did not know every chapter that had come before.</p>
+      <p class="story-p">I simply knew that I had watched something enormous.</p>
+      <p class="story-p">I had watched Messi win the World Cup.</p>
+      <p class="story-p">And I had watched Argentina win it.</p>
+      <p class="story-p">Argentina was no longer just another football team to me.</p>
+      <p class="story-p">Somewhere along the way, it had become part of my identity.</p>
+      <p class="story-p">And Messi had become part of that memory.</p>
+      <p class="story-p">But I still did not know how deeply that connection would grow.</p>
+      <p class="story-p">Then came 2026.</p>
+      <p class="story-p">This time, I was different.</p>
+      <p class="story-p">I had grown older.</p>
+      <p class="story-p">I had the ability to watch the matches I wanted to watch.</p>
+      <p class="story-p">And for the first time, I could follow football much more closely.</p>
+      <p class="story-p">I watched the matches.</p>
+      <p class="story-p">I watched Argentina.</p>
+      <p class="story-p">I watched Messi.</p>
+      <p class="story-p">And I started to understand football in a completely different way.</p>
+      <p class="story-p">But something else happened too.</p>
+      <p class="story-p">I started looking backward.</p>
+      <p class="story-p">I began learning about Messi's journey.</p>
+      <p class="story-p">Rosario.</p>
+      <p class="story-p">Barcelona.</p>
+      <p class="story-p">La Masia.</p>
+      <p class="story-p">Number 10.</p>
+      <p class="story-p">The rivalry.</p>
+      <p class="story-p">The heartbreak with Argentina.</p>
+      <p class="story-p">The return.</p>
+      <p class="story-p">The Copa América.</p>
+      <p class="story-p">The World Cup.</p>
+      <p class="story-p">And suddenly, the moment I had watched in 2022 meant something completely different.</p>
+      <p class="story-p">In 2022, I had watched Messi lift the World Cup.</p>
+      <p class="story-p">In 2026, I began to understand what it had taken for him to get there.</p>
+      <p class="story-p">I understood the years behind that single moment.</p>
+      <p class="story-p">The losses.</p>
+      <p class="story-p">The pressure.</p>
+      <p class="story-p">The doubts.</p>
+      <p class="story-p">The return.</p>
+      <p class="story-p">The belief.</p>
+      <p class="story-p">And the years of carrying the number 10.</p>
+      <p class="story-p">Argentina reached another World Cup final.</p>
+      <p class="story-p">But this time, the ending was different.</p>
+      <p class="story-p">Spain won.</p>
+      <p class="story-p">Argentina lost 1–0 after extra time.</p>
+      <p class="story-p">I could feel the disappointment.</p>
+      <p class="story-p">But something had changed inside me.</p>
+      <p class="story-p">I was no longer simply watching a football match.</p>
+      <p class="story-p">I was watching a chapter of a story that I had finally come to understand.</p>
+      <p class="story-p">And then came the goodbye.</p>
+      <p class="story-p">Messi announced that his journey with Argentina was coming to an end.</p>
+      <p class="story-p">Suddenly, the player I had only recently begun to understand was becoming a memory.</p>
+      <p class="story-p">That feeling stayed with me.</p>
+      <p class="story-p">Because I realized something.</p>
+      <p class="story-p">I had not grown up watching Messi.</p>
+      <p class="story-p">I had found him along the way.</p>
+      <p class="story-p">And somehow, I had found him at the end of one of the greatest football stories ever told.</p>
+      <p class="story-p">That is why this book exists.</p>
+      <p class="story-p">Not because Messi needs another biography.</p>
+      <p class="story-p">Not because his trophies need another list.</p>
+      <p class="story-p">But because I wanted to keep a memory.</p>
+      <p class="story-p">A memory of the time when I discovered football.</p>
+      <p class="story-p">A memory of Argentina.</p>
+      <p class="story-p">A memory of the World Cup in 2022.</p>
+      <p class="story-p">A memory of understanding Messi more deeply in 2026.</p>
+      <p class="story-p">And a memory of watching an era slowly come to an end.</p>
+      <p class="story-p">So I decided not to leave that memory only inside my mind.</p>
+      <p class="story-p">I turned it into something I could keep.</p>
+      <p class="story-p">A card.</p>
+      <p class="story-p">A QR code.</p>
+      <p class="story-p">And behind that small code, an entire book.</p>
+      <p class="story-p">A book about Lionel Messi.</p>
+      <p class="story-p">A book about Argentina.</p>
+      <p class="story-p">And, in a small way, a book about me too.</p>
+      <p class="story-p">Because one day, years from now, I may not remember every match I watched.</p>
+      <p class="story-p">I may forget the exact details.</p>
+      <p class="story-p">But I hope I will remember what it felt like to be here.</p>
+      <p class="story-p">To watch Messi.</p>
+      <p class="story-p">To support Argentina.</p>
+      <p class="story-p">To discover football.</p>
+      <p class="story-p">And to realize that sometimes, we do not understand the importance of a moment until we are already watching it become history.</p>
+      <p class="story-p">This is my memory.</p>
+      <p class="story-p">This is how I found Messi.</p>
+      <p class="story-p">And this is why I chose to keep his final chapter close to me.</p>
+    </div>
+
+    <div class="mt-12 sm:mt-16 pt-8 border-t border-white/5 text-center space-y-3">
+      <p class="ending-text">I did not watch the whole journey from the beginning.</p>
+      <p class="ending-text">I arrived somewhere along the way.</p>
+      <p class="ending-text">But I was there when the dream became a memory.</p>
+      <p class="ending-text">And now, I want to preserve that memory.</p>
+      <p class="ending-text">Not only for today.</p>
+      <p class="ending-text">But for the future.</p>
+    </div>
+  </article>
+
+  <!-- CHAPTER 15 -->
+  <article class="chapter-block mb-24 sm:mb-32" id="ch15">
+    <div class="text-center mb-10 sm:mb-14">
+      <div class="flex justify-center mb-5">
+        <div class="w-8 h-px bg-gold-500/40"></div>
+      </div>
+      <p class="chapter-num mb-3">15</p>
+      <h2 class="chapter-title text-2xl sm:text-3xl md:text-4xl mb-3">THE TIME CAPSULE</h2>
+      <p class="chapter-loc">A MESSAGE FROM 2026</p>
+      <div class="gold-line max-w-[5rem] mx-auto mt-6"></div>
+    </div>
+
+    <div class="space-y-5 sm:space-y-6">
+      <p class="story-p">If you are reading this, then time has already passed.</p>
+      <p class="story-p">Maybe many years have passed.</p>
+      <p class="story-p">Maybe the card you are holding is old now.</p>
+      <p class="story-p">Maybe the world around you looks completely different.</p>
+      <p class="story-p">Football has changed.</p>
+      <p class="story-p">New players have arrived.</p>
+      <p class="story-p">New heroes have been born.</p>
+      <p class="story-p">New names may have taken the places once occupied by the legends we knew.</p>
+      <p class="story-p">And perhaps, the number 10 belongs to someone else now.</p>
+      <p class="story-p">But once, there was a time when Lionel Messi played football.</p>
+      <p class="story-p">There was a time when Argentina carried the number 10.</p>
+      <p class="story-p">There was a time when millions of people waited for Messi to step onto the pitch.</p>
+      <p class="story-p">And there was a time when those moments were not history.</p>
+      <p class="story-p">We were living them.</p>
+      <p class="story-p">That time was 2026.</p>
+      <p class="story-p">At that time, Lionel Messi's journey with Argentina had come to an end.</p>
+      <p class="story-p">The stadiums had gone quiet.</p>
+      <p class="story-p">The matches had ended.</p>
+      <p class="story-p">The number 10 had played its final chapter for Argentina.</p>
+      <p class="story-p">And someone, somewhere, decided that this moment should not be forgotten.</p>
+      <p class="story-p">So this card was made.</p>
+      <p class="story-p">A small card.</p>
+      <p class="story-p">With a small QR code.</p>
+      <p class="story-p">But behind that little code was something much bigger.</p>
+      <p class="story-p">A story.</p>
+      <p class="story-p">A memory.</p>
+      <p class="story-p">An entire era preserved inside a digital book.</p>
+      <p class="story-p">If you found this many years later, you may not know exactly what it felt like to live through this time.</p>
+      <p class="story-p">So let me tell you.</p>
+      <p class="story-p">There was something special about watching Lionel Messi play.</p>
+      <p class="story-p">Sometimes, it was the goal.</p>
+      <p class="story-p">Sometimes, it was the pass.</p>
+      <p class="story-p">Sometimes, it was simply the way he received the ball.</p>
+      <p class="story-p">The stadium would change.</p>
+      <p class="story-p">The crowd would react.</p>
+      <p class="story-p">And for a few seconds, everyone would wait to see what he would do.</p>
+      <p class="story-p">That feeling belonged to our time.</p>
+      <p class="story-p">We watched him grow from a young player into a legend.</p>
+      <p class="story-p">We watched him carry the number 10.</p>
+      <p class="story-p">We watched him lose.</p>
+      <p class="story-p">We watched him return.</p>
+      <p class="story-p">We watched him finally lift the World Cup.</p>
+      <p class="story-p">And eventually, we watched him say goodbye.</p>
+      <p class="story-p">Maybe that is the strange thing about time.</p>
+      <p class="story-p">When something is happening, we think it will always be there.</p>
+      <p class="story-p">We never know which ordinary moment will someday become a memory.</p>
+      <p class="story-p">A match can become history.</p>
+      <p class="story-p">A player can become a legend.</p>
+      <p class="story-p">A shirt can become a symbol.</p>
+      <p class="story-p">And a small card can become a time capsule.</p>
+      <p class="story-p">This book was created for that reason.</p>
+      <p class="story-p">Not because Lionel Messi needs another biography.</p>
+      <p class="story-p">His story already belongs to the world.</p>
+      <p class="story-p">This was made because one person wanted to remember what it felt like to live through the ending of an era.</p>
+      <p class="story-p">To remember Argentina.</p>
+      <p class="story-p">To remember number 10.</p>
+      <p class="story-p">To remember the World Cup.</p>
+      <p class="story-p">To remember the moment when football stopped being just a game and became a memory.</p>
+      <p class="story-p">So if you are reading this years from now, try to imagine our world.</p>
+      <p class="story-p">Imagine the stadium.</p>
+      <p class="story-p">Imagine the crowd.</p>
+      <p class="story-p">Imagine the blue and white shirts.</p>
+      <p class="story-p">Imagine the number 10 walking onto the pitch.</p>
+      <p class="story-p">Imagine a generation watching him for the last time.</p>
+      <p class="story-p">We did not know exactly how quickly those moments would become history.</p>
+      <p class="story-p">We were simply living them.</p>
+      <p class="story-p">And now, you are looking back at them.</p>
+      <p class="story-p">That is what a time capsule does.</p>
+      <p class="story-p">It takes something that once felt ordinary, and carries it into the future.</p>
+      <p class="story-p">Maybe one day, you will forget the exact matches.</p>
+      <p class="story-p">Maybe you will forget the scores.</p>
+      <p class="story-p">Maybe you will forget which players came after him.</p>
+      <p class="story-p">But I hope you remember this.</p>
+      <p class="story-p">There was once a time when we watched Messi.</p>
+      <p class="story-p">And we were lucky enough to live in that time.</p>
+      <p class="story-p">You are not reading the future now.</p>
+      <p class="story-p">You are reading our past.</p>
+      <p class="story-p">And for a moment, you are standing where we once stood.</p>
+      <p class="story-p">This is what we wanted to preserve.</p>
+      <p class="story-p">Not just the player.</p>
+      <p class="story-p">Not just the trophies.</p>
+      <p class="story-p">Not just the records.</p>
+      <p class="story-p">But the feeling of being alive during his era.</p>
+      <p class="story-p">The feeling of watching the number 10.</p>
+      <p class="story-p">The feeling of watching an era become a memory.</p>
+      <p class="story-p">And now, that memory belongs to you too.</p>
+    </div>
+
+    <div class="mt-12 sm:mt-16 pt-8 border-t border-white/5 text-center space-y-3">
+      <p class="ending-text">THE ERA ENDED.</p>
+      <p class="ending-text">THE MEMORY REMAINS.</p>
+      <p class="ending-text">Created in 2026.</p>
+      <p class="ending-text">Preserved for the future.</p>
+      <p class="ending-text">THE ERA OF 10</p>
+      <p class="ending-text">A memory preserved in time.</p>
+    </div>
+  </article>
+
+  <!-- Final seal -->
+  <footer class="text-center pt-8 pb-20 chapter-block">
+    <div class="flex justify-center mb-6">
+      <div class="glow-dot"></div>
+    </div>
+    <p class="font-serif text-2xl sm:text-3xl text-parchment font-semibold tracking-wide mb-2">THE ERA ENDED.</p>
+    <p class="font-serif italic text-gold-300/80 text-lg mb-8">THE MEMORY REMAINS.</p>
+    <div class="gold-line max-w-[6rem] mx-auto mb-8"></div>
+    <p class="font-sans text-[0.65rem] tracking-[0.25em] text-parchment/40 uppercase">Created in 2026 · Preserved for the future</p>
+    <p class="font-serif text-gold-400/50 text-sm mt-3">THE ERA OF 10</p>
+  </footer>
+
+</main>
+
+<!-- Floating nav -->
+<nav class="nav-pill" id="navPill" aria-label="Navigation">
+  <button class="nav-btn" id="toTop" title="Top" aria-label="Back to top">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+  </button>
+  <button class="nav-btn" id="toToc" title="Contents" aria-label="Table of contents">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h10"/></svg>
+  </button>
+</nav>
+
+<script>
+(function () {
+  const cover = document.getElementById('cover');
+  const enterBtn = document.getElementById('enterBtn');
+  const progress = document.getElementById('progress');
+  const navPill = document.getElementById('navPill');
+  const chapters = document.querySelectorAll('.chapter-block');
+
+  // Enter book
+  function openBook() {
+    cover.classList.add('hidden');
+    document.body.style.overflow = '';
+    // Reveal first blocks after short delay
+    setTimeout(() => {
+      chapters.forEach((el, i) => {
+        if (el.getBoundingClientRect().top < window.innerHeight * 0.92) {
+          setTimeout(() => el.classList.add('visible'), i * 80);
+        }
+      });
+    }, 400);
+  }
+
+  enterBtn.addEventListener('click', openBook);
+
+  // Also allow click anywhere on cover after a moment
+  cover.addEventListener('click', (e) => {
+    if (e.target.closest('.enter-btn') || e.target === enterBtn) return;
+    // small delay so accidental taps don't skip
+  });
+
+  // Progress + nav visibility + scroll reveals
+  function onScroll() {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    progress.style.width = pct + '%';
+
+    if (scrollTop > 180) navPill.classList.add('show');
+    else navPill.classList.remove('show');
+
+    chapters.forEach(el => {
+      if (el.classList.contains('visible')) return;
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight * 0.88) {
+        el.classList.add('visible');
+      }
+    });
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // Nav actions
+  document.getElementById('toTop').addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+  document.getElementById('toToc').addEventListener('click', () => {
+    document.getElementById('toc').scrollIntoView({ behavior: 'smooth' });
+  });
+
+  // Prevent body scroll while cover is open
+  document.body.style.overflow = 'hidden';
+})();
+</script>
+</body>
+</html>
